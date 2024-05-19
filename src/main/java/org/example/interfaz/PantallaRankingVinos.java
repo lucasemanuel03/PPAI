@@ -14,18 +14,19 @@ import java.util.Date;
 public class PantallaRankingVinos extends JFrame{
 
     // ATRIBUTOS
-    JPanel panelPrincipal = new JPanel();
-    JPanel panelTitulo = new JPanel();
-    JPanel panelContenido = new JPanel();
-    JLabel titulo = new JLabel("BON VINO", SwingConstants.CENTER);
-    JLabel subtitulo = new JLabel(":: Ranking de Vinos ::", SwingConstants.CENTER);
+    private JPanel panelPrincipal = new JPanel();
+    private JPanel panelTitulo = new JPanel();
+    private JPanel panelContenido = new JPanel();
+    private JLabel titulo = new JLabel("BON VINO", SwingConstants.CENTER);
+    private JLabel subtitulo = new JLabel(":: Ranking de Vinos ::", SwingConstants.CENTER);
 
     //Componentes a mostar en el habilitar ventana
-    JTextField lblFechaDesde = new JTextField("01-01-2000", 20);
-    JTextField lblFechaHasta = new JTextField("01-01-2000", 20);
-    JTextField campoTexto = new JTextField(20);
-    JButton btnAceptar = new JButton("Aceptar");
-    JButton btnCancelar = new JButton("Cancelar");
+    private JTextField lblFechaDesde = new JTextField("01-01-2000", 20);
+    private JTextField lblFechaHasta = new JTextField("01-01-2000", 20);
+    private JLabel lblTextFechaDesde = new JLabel("Fecha Inicio: ");
+    private JLabel lblTextFechaHasta = new JLabel("Fecha de Fin: ");
+    private JButton btnAceptar = new JButton("Aceptar");
+    private JButton btnCancelar = new JButton("Cancelar");
 
 
     //METODOS
@@ -55,23 +56,27 @@ public class PantallaRankingVinos extends JFrame{
         panelTitulo.add(subtitulo);
 
         // Crear panel para otros componentes
-        panelContenido.setLayout(new FlowLayout());
+        panelContenido.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20));
 
 
         //AÑADIR PANELES
         // Paneles al Principal
         panelPrincipal.add(panelTitulo, BorderLayout.NORTH);
         panelPrincipal.add(panelContenido, BorderLayout.CENTER);
+        panelPrincipal.add(btnCancelar, BorderLayout.SOUTH); // CAMBIAR DESPUÉS
         //principal a la Ventana
         add(panelPrincipal);
+
 
     };
 
     public void solicitarSelFechaDesdeYHasta(){
+        panelContenido.add(lblTextFechaDesde);
         panelContenido.add(lblFechaDesde);
+        panelContenido.add(lblTextFechaHasta);
         panelContenido.add(lblFechaHasta);
         panelContenido.add(btnAceptar);
-        panelContenido.add(btnCancelar);
+
 
         System.out.println("Llego a add componentes");
 
@@ -126,6 +131,20 @@ public class PantallaRankingVinos extends JFrame{
         System.out.println("La fecha no es correcta");
         return false;
     };
+
+    public void solicitarSelTipoResena(){
+
+    };
+
+    public void tomarTipoResena(){
+
+    };
+    public void solicitarConfirmacionGenReporte(){
+
+    };
+    public void tomarConfirmacionGenReporte(){
+
+    }
 
 
 }

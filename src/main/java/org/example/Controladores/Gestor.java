@@ -17,6 +17,7 @@ public class Gestor {
     public void opcionGenerarRankingVinos(PantallaRankingVinos pantalla){
         pantalla.solicitarSelFechaDesdeYHasta();
         System.out.println("Llego al gestor");
+
     }
 
 
