@@ -5,7 +5,7 @@ import org.example.interfaz.PantallaRankingVinos;
 
 import java.util.Date;
 
-public class Gestor {
+public class GestorRankingVinos {
 
     // Atributos
     Date fechaDesde;

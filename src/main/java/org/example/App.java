@@ -1,7 +1,6 @@
 package org.example;
 
-import org.example.Controladores.Gestor;
-import org.example.interfaz.PantallaPrueba;
+import org.example.Controladores.GestorRankingVinos;
 import org.example.interfaz.PantallaRankingVinos;
 
 /**
@@ -23,7 +22,7 @@ public class App
 
         PantallaRankingVinos pantallaRanking = new PantallaRankingVinos();
         pantallaRanking.setVisible(true);
-        Gestor gestor = new Gestor();
+        GestorRankingVinos gestor = new GestorRankingVinos();
         pantallaRanking.opcionGenerarRankingVinos(gestor);
 
 

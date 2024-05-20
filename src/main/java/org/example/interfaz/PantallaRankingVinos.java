@@ -1,6 +1,5 @@
 package org.example.interfaz;
-
-import org.example.Controladores.Gestor;
+import org.example.Controladores.GestorRankingVinos;
 
 import javax.swing.JFrame;
 import javax.swing.*;
@@ -31,7 +30,7 @@ public class PantallaRankingVinos extends JFrame{
 
     //METODOS
 
-    public void opcionGenerarRankingVinos(Gestor gestor){
+    public void opcionGenerarRankingVinos(GestorRankingVinos gestor){
         habilitarVentana();
         System.out.println("Llego opcGenerar pantalla");
         gestor.opcionGenerarRankingVinos(this);
