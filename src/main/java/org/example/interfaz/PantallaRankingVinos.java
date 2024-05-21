@@ -43,13 +43,13 @@ public class PantallaRankingVinos extends JFrame{
     //METODOS
 
     public void opcionGenerarRankingVinos(GestorRankingVinos gestor){
-        habilitarVentana();
+        habilitarVentana(gestor);
         System.out.println("Llego opcGenerar pantalla");
         gestor.opcionGenerarRankingVinos(this);
 
 
     };
-    public void habilitarVentana(){
+    public void habilitarVentana(GestorRankingVinos gestor){
         // Configuración de la ventana
         setTitle("Mi Ventana con Título y Subtítulo");
         setSize(700, 600);
@@ -79,6 +79,10 @@ public class PantallaRankingVinos extends JFrame{
         //principal a la Ventana
         add(panelPrincipal);
 
+        btnCancelar.addActionListener(e -> {
+            gestor.cancelarCU(this);
+            System.out.println("CASO DE USO FINALIZADO POR CANCELACIÓN");
+        });
 
     };
 

@@ -61,6 +61,11 @@ public class GestorRankingVinos {
 
     }
 
+    public void cancelarCU(PantallaRankingVinos pantalla){
+        //Cierra la ventana
+        pantalla.dispose();
+    }
+
 
     //GETTERS AND SETTERS
     public Date getFechaDesde() {
