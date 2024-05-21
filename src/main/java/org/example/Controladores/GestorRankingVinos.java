@@ -1,8 +1,7 @@
 package org.example.Controladores;
 
-
+import org.example.Clases.*;
 import org.example.interfaz.PantallaRankingVinos;
-
 import java.util.Date;
 
 public class GestorRankingVinos {
@@ -64,6 +63,25 @@ public class GestorRankingVinos {
     public void cancelarCU(PantallaRankingVinos pantalla){
         //Cierra la ventana
         pantalla.dispose();
+    }
+    public void buscarVinosConResenaEnPeriodo(Vino[] vinos){
+        for (int i = 0; i < vinos.length; i++) {
+            Boolean tieneReserva = vinos[i].tenesResenaDeTipoEnPeriodo();
+        if (tieneReserva) {
+            String nombre = vinos[i].getNombre();
+            Double precio = vinos[i].getPrecio();
+            String [] infoBodega = vinos[i].buscarInfoBodega();
+            String descVarietal = vinos[i].buscarVarietal();
+            // Pendiente ver como guardar los datos
+        }
+        }
+
+    }
+
+    public void calcularPuntajeDeSommelierEnPeriodo(Vino[] vinos){
+        for (int i = 0; i < vinos.length; i++) {
+            vinos[i].calcularPuntajeSommelierPromedio();
+        }
     }
 
 
