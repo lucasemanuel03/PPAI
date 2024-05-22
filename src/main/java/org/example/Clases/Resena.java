@@ -16,7 +16,7 @@ public class Resena {
     }
 
     public boolean sosDeSommelier(){
-        return true;
+        return esPremium;
     }
 
     public boolean sosDePeriodo(Date fechaDesde, Date fechaHasta){

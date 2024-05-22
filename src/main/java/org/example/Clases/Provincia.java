@@ -8,6 +8,12 @@ public class Provincia {
     private ArrayList<RegionVitivinicola> regionVitivinicolas;
     private Pais pais;
 
+    //METODOS DEL DOMINIO
+
+    public String obtenerPais(){
+        return this.pais.getNombre();
+    }
+
     public String getNombre() {
         return nombre;
     }

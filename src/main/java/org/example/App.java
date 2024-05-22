@@ -74,18 +74,22 @@ public class App
         ArrayList<Resena> resenasVino6 = new ArrayList<>();
         ArrayList<Resena> resenasVino7 = new ArrayList<>();
 
+        //CREACION DE VARIETALES
+        Varietal varietal1 = new Varietal("Malbec", 80.0);
+        Varietal varietal2 = new Varietal("Cabernet", 84.0);
+
         //VINOS CREADOS
-        Vino vino1 = new Vino(2015, "/imagen1.png", "Gran Reserva 2015", "Aroma a frutos rojos con notas de madera y especias.", 2500.0, bodega1, resenasVino1);
-        Vino vino2 = new Vino(2017, "/imagen2.png", "Gran Vino Mendoza", "Aroma a frutos rojos con notas de madera y especias.", 3500.0, bodega1, resenasVino2);
-        Vino vino3 = new Vino(2019, "/imagen3.png", "Vino Regional 2019", "Aroma a frutos rojos con notas de madera y especias.", 2000.0, bodega2, resenasVino3);
-        Vino vino4 = new Vino(2020, "/imagen4.png", "Vino Nacional", "Aroma a frutos rojos con notas de madera y especias.", 1500.0, bodega1, resenasVino4);
-        Vino vino5 = new Vino(2023, "/imagen5.png", "Merlot Clásico", "Aroma a frutos rojos con notas de madera y especias.", 1300.0, bodega2, resenasVino5);
-        Vino vino6 = new Vino(2018, "/imagen6.png", "Vino de La Rioja", "Aroma a frutos rojos con notas de madera y especias.", 6000.0, bodega2, resenasVino6);
-        Vino vino7 = new Vino(2020, "/imagen7.png", "San Juan Reserva", "Aroma a frutos rojos con notas de madera y especias.", 3000.0, bodega1, resenasVino7);
+        Vino vino1 = new Vino(2015, "/imagen1.png", "Gran Reserva 2015", "Aroma a frutos rojos con notas de madera y especias.", 2500.0, bodega1, resenasVino1, varietal1);
+        Vino vino2 = new Vino(2017, "/imagen2.png", "Gran Vino Mendoza", "Aroma a frutos rojos con notas de madera y especias.", 3500.0, bodega1, resenasVino2, varietal2);
+        Vino vino3 = new Vino(2019, "/imagen3.png", "Vino Regional 2019", "Aroma a frutos rojos con notas de madera y especias.", 2000.0, bodega2, resenasVino3, varietal1);
+        Vino vino4 = new Vino(2020, "/imagen4.png", "Vino Nacional", "Aroma a frutos rojos con notas de madera y especias.", 1500.0, bodega1, resenasVino4, varietal1);
+        Vino vino5 = new Vino(2023, "/imagen5.png", "Merlot Clásico", "Aroma a frutos rojos con notas de madera y especias.", 1300.0, bodega2, resenasVino5, varietal2);
+        Vino vino6 = new Vino(2018, "/imagen6.png", "Vino de La Rioja", "Aroma a frutos rojos con notas de madera y especias.", 6000.0, bodega2, resenasVino6, varietal1);
+        Vino vino7 = new Vino(2020, "/imagen7.png", "San Juan Reserva", "Aroma a frutos rojos con notas de madera y especias.", 3000.0, bodega1, resenasVino7, varietal2);
 
         //RESEÑAS
-        Resena resena1 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,7.7, vino1);
-        Resena resena2 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,5.7, vino1);
+        Resena resena1 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,7.7, vino1);
+        Resena resena2 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,5.7, vino1);
         Resena resena3 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,8.8, vino1);
         Resena resena4 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,6.7, vino2);
         Resena resena5 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,7.2, vino2);

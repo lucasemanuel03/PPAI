@@ -10,6 +10,13 @@ public class RegionVitivinicola {
         this.descripcion = descripcion;
     }
 
+    //METODOS DEL DOMINIO
+    public String obtenerPais(){
+        String pais = this.provincia.obtenerPais();
+
+        return pais;
+    }
+
     public String getNombre() {
         return nombre;
     }

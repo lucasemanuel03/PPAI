@@ -72,16 +72,22 @@ public class GestorRankingVinos {
     public void buscarVinosConResenaEnPeriodo(ArrayList<Vino> vinos){
         ArrayList<String> infoBodegas = new ArrayList<>();
         for (int i = 0; i < vinos.size(); i++) {
-            Boolean tieneReserva = vinos.get(i).tenesResenaDeTipoEnPeriodo(this.fechaDesde, this.fechaHasta);
-        if (tieneReserva) {
-            String nombre = vinos.get(i).getNombre();
-            Double precio = vinos.get(i).getPrecio();
-            ArrayList<String> infoBodega = vinos.get(i).buscarInfoBodega();
-            System.out.println("InfBodegas: " + infoBodega);
-            String descVarietal = vinos.get(i).buscarVarietal();
-            // Pendiente ver como guardar los datos
-        }
-        }
+            Boolean tieneResenaValidas = vinos.get(i).tenesResenaDeTipoEnPeriodo(this.fechaDesde, this.fechaHasta);
+
+            if (tieneResenaValidas) {
+                String nombre = vinos.get(i).getNombre();
+                Double precio = vinos.get(i).getPrecio();
+                ArrayList<String> infoBodega = vinos.get(i).buscarInfoBodega();
+                System.out.println("InfBodegas: " + infoBodega);
+                String descVarietal = vinos.get(i).buscarVarietal();
+                // Pendiente ver como guardar los datos
+
+                //Luego de determinar que el vino tiene reseñas validas, calcula el promedio de puntaje de reseñas.
+                //VER QUE NO ES IGAUL A LA SOLUCION
+                // vinos.get(i).calcularPuntajeSommelierPromedio(this.fechaDesde, this.fechaHasta);
+            }
+
+            }
 
     }
 

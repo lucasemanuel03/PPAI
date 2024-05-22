@@ -1,5 +1,7 @@
 package org.example.Clases;
 
+import java.util.ArrayList;
+
 public class Bodega {
     // Atributos
     private String coordenadasUbicacion;
@@ -19,9 +21,20 @@ public class Bodega {
         this.region = region;
     }
 
-    // Métodos getter y setter
+    //METODOS DEL DOMINIO
+    public ArrayList<String> obtenerRegionYPais(){
+        ArrayList<String> regionYPais = new ArrayList<>();
+        String region = this.region.getNombre();
+        String pais = this.region.obtenerPais();
 
-    // Getter y setter para coordenadasUbicacion
+        regionYPais.add(region);
+        regionYPais.add(pais);
+
+        return regionYPais;
+
+    }
+
+    // Métodos getter y setter
     public String getCoordenadasUbicacion() {
         return coordenadasUbicacion;
     }
@@ -30,7 +43,6 @@ public class Bodega {
         this.coordenadasUbicacion = coordenadasUbicacion;
     }
 
-    // Getter y setter para descripcion
     public String getDescripcion() {
         return descripcion;
     }
@@ -39,7 +51,6 @@ public class Bodega {
         this.descripcion = descripcion;
     }
 
-    // Getter y setter para historia
     public String getHistoria() {
         return historia;
     }
@@ -48,7 +59,6 @@ public class Bodega {
         this.historia = historia;
     }
 
-    // Getter y setter para nombre
     public String getNombre() {
         return nombre;
     }
@@ -57,7 +67,6 @@ public class Bodega {
         this.nombre = nombre;
     }
 
-    // Getter y setter para periodoUpdate
     public String getPeriodoActualizacion() {
         return periodoActualizacion;
     }

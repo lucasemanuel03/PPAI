@@ -14,12 +14,13 @@ public class Vino {
     private double precio;
     private Bodega bodega;
     private ArrayList<Resena> resenas;
+    private Varietal varietal;
 
 
     //METODOS
 
     //Constructor
-    public Vino(int anada, String imagenEtiqueta, String nombre, String notaCataBodega, double precio,Bodega bodega, ArrayList<Resena> resenas) {
+    public Vino(int anada, String imagenEtiqueta, String nombre, String notaCataBodega, double precio,Bodega bodega, ArrayList<Resena> resenas, Varietal varietal) {
         this.anada = anada;
         this.imagenEtiqueta = imagenEtiqueta;
         this.nombre = nombre;
@@ -27,6 +28,7 @@ public class Vino {
         this.precio = precio;
         this.bodega = bodega;
         this.resenas = resenas;
+        this.varietal = varietal;
     }
 
     public int getAnada() {
@@ -77,25 +79,51 @@ public class Vino {
         this.resenas = resenas;
     }
 
+    public Bodega getBodega() {
+        return bodega;
+    }
+
+    public void setBodega(Bodega bodega) {
+        this.bodega = bodega;
+    }
+
+    public Varietal getVarietal() {
+        return varietal;
+    }
+
+    public void setVarietal(Varietal varietal) {
+        this.varietal = varietal;
+    }
+
 
     // Metodos del dominio
     public Boolean tenesResenaDeTipoEnPeriodo(Date fechaDesde, Date fechaHasta){
         System.out.println("// Vino: " + getNombre());
         for (int i = 0; i < resenas.size(); i++){
             boolean tenesResenasPeriodo = resenas.get(i).sosDePeriodo(fechaDesde, fechaHasta);
-            if(tenesResenasPeriodo){
+            boolean sosDeSommelier = resenas.get(i).sosDeSommelier();
+
+            if(tenesResenasPeriodo && sosDeSommelier) // validar que sea de periodo y sea Premium
+            {
+                System.out.println("valido");
                 return true;
             }
         }
-
+        System.out.println("No Valido");
         return false;
     }
     public ArrayList<String> buscarInfoBodega(){
         ArrayList<String> lista = new ArrayList<>();
+        String nombreBodega = bodega.getNombre();
+        ArrayList<String> regionYPais = bodega.obtenerRegionYPais();
+
+        lista.add(nombreBodega);
+        lista.addAll(regionYPais);
+
         return lista;
     }
     public String buscarVarietal(){
-        return "";
+        return this.varietal.getDescripcion();
     }
     public double calcularPuntajePromedio(ArrayList<Double> lista) {
         if (lista == null || lista.isEmpty()) {

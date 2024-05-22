@@ -2,9 +2,9 @@ package org.example.Clases;
 
 public class Varietal {
     private String descripcion;
-    private String porcentajeComposicion;
+    private double porcentajeComposicion;
 
-    public Varietal(String descripcion, String porcentajeComposicion) {
+    public Varietal(String descripcion, double porcentajeComposicion) {
         this.descripcion = descripcion;
         this.porcentajeComposicion = porcentajeComposicion;
     }
@@ -17,11 +17,11 @@ public class Varietal {
         this.descripcion = descripcion;
     }
 
-    public String getPorcentajeComposicion() {
+    public double getPorcentajeComposicion() {
         return porcentajeComposicion;
     }
 
-    public void setPorcentajeComposicion(String porcentajeComposicion) {
+    public void setPorcentajeComposicion(double porcentajeComposicion) {
         this.porcentajeComposicion = porcentajeComposicion;
     }
 }
