@@ -1,6 +1,8 @@
 package org.example;
 
 import org.example.Controladores.GestorRankingVinos;
+import org.example.interfaz.PantallaExcel;
+import org.example.interfaz.PantallaPrueba;
 import org.example.interfaz.PantallaRankingVinos;
 
 /**
@@ -11,7 +13,6 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
 
 
         //PantallaPrueba pantallaPrueba = new PantallaPrueba();
@@ -19,7 +20,9 @@ public class App
 
         //prueba Vinos
 
-
+        PantallaExcel excel = new PantallaExcel();
+        String[] test ={"Nicolas", "Lucas"};
+        excel.generarExcel(test);
         PantallaRankingVinos pantallaRanking = new PantallaRankingVinos();
         pantallaRanking.setVisible(true);
         GestorRankingVinos gestor = new GestorRankingVinos();
