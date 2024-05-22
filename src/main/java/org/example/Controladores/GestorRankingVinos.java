@@ -5,6 +5,7 @@ import org.example.interfaz.PantallaRankingVinos;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class GestorRankingVinos {
 
@@ -70,6 +71,7 @@ public class GestorRankingVinos {
         pantalla.dispose();
     }
     public void buscarVinosConResenaEnPeriodo(ArrayList<Vino> vinos){
+        ArrayList<Object> vinosSeleccionados = new ArrayList<>();
         ArrayList<String> infoBodegas = new ArrayList<>();
         for (int i = 0; i < vinos.size(); i++) {
             Boolean tieneResenaValidas = vinos.get(i).tenesResenaDeTipoEnPeriodo(this.fechaDesde, this.fechaHasta);
@@ -84,7 +86,18 @@ public class GestorRankingVinos {
 
                 //Luego de determinar que el vino tiene reseñas validas, calcula el promedio de puntaje de reseñas.
                 //VER QUE NO ES IGAUL A LA SOLUCION
-                // vinos.get(i).calcularPuntajeSommelierPromedio(this.fechaDesde, this.fechaHasta);
+                double promedio = vinos.get(i).calcularPuntajeSommelierPromedio(this.fechaDesde, this.fechaHasta);
+
+                //AGREGAR VINO AL ARRAY DE SELECCIONADOS
+                ArrayList<Object> datosVinoSeleccionado = new ArrayList<>();
+                datosVinoSeleccionado.add(promedio);
+                datosVinoSeleccionado.add(nombre);
+                datosVinoSeleccionado.add(precio);
+                datosVinoSeleccionado.addAll(infoBodega);
+                datosVinoSeleccionado.add(descVarietal);
+
+                System.out.println("Datos del vino seleccionado: " + datosVinoSeleccionado);
+
             }
 
             }

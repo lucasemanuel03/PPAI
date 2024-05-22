@@ -88,13 +88,13 @@ public class App
         Vino vino7 = new Vino(2020, "/imagen7.png", "San Juan Reserva", "Aroma a frutos rojos con notas de madera y especias.", 3000.0, bodega1, resenasVino7, varietal2);
 
         //RESEÑAS
-        Resena resena1 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,7.7, vino1);
+        Resena resena1 = new Resena("Excelente cuerpo y final prolongado.", false, fecha2,7.7, vino1);
         Resena resena2 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,5.7, vino1);
         Resena resena3 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,8.8, vino1);
         Resena resena4 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,6.7, vino2);
         Resena resena5 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,7.2, vino2);
         Resena resena6 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,8.9, vino3);
-        Resena resena7 = new Resena("Excelente cuerpo y final prolongado.", true, fecha2,9.7, vino3);
+        Resena resena7 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,9.7, vino3);
         Resena resena8 = new Resena("Excelente cuerpo y final prolongado.", false, fecha2,9.1, vino4);
 
         //AÑADIR RESEÑAS A VINOS
@@ -110,13 +110,13 @@ public class App
 
         //CREAR ARRAY VINOS
         ArrayList<Vino> vinos = new ArrayList<>();
-        vinos.add(vino1);
-        vinos.add(vino2);
+       // vinos.add(vino1);
+        //vinos.add(vino2);
         vinos.add(vino3);
-        vinos.add(vino4);
-        vinos.add(vino5);
-        vinos.add(vino6);
-        vinos.add(vino7);
+        // vinos.add(vino4);
+        //vinos.add(vino5);
+        //vinos.add(vino6);
+        //vinos.add(vino7);
 
 
         // System.out.println("RESEÑAS DE VINO" + vino1.getNombre() + vino1.getResenas());

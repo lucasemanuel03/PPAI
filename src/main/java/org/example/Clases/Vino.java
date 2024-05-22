@@ -137,8 +137,9 @@ public class Vino {
 
         return suma / lista.size();
     }
-    public void calcularPuntajeSommelierPromedio(Date fechaDesde, Date fechaHasta){
+    public double calcularPuntajeSommelierPromedio(Date fechaDesde, Date fechaHasta){
         ArrayList<Double> puntajes = new ArrayList<>();
+
         for (int i = 0; i< resenas.size(); i++){
             boolean sosDePeriodo = resenas.get(i).sosDePeriodo(fechaDesde, fechaHasta);
             boolean sosDeSommelier = resenas.get(i).sosDeSommelier();
@@ -146,7 +147,11 @@ public class Vino {
                 puntajes.add(resenas.get(i).getPuntaje());
             }
         }
+        System.out.println("Nro Resenas: " + resenas.size());
+        System.out.println("Array Puntajes: " + puntajes);
         double promedio = calcularPuntajePromedio(puntajes);
+
+        return promedio;
     }
 
 }
