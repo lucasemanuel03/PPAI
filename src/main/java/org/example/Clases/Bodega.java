@@ -6,15 +6,17 @@ public class Bodega {
     private String descripcion;
     private String historia;
     private String nombre;
-    private String periodoUpdate;
+    private String periodoActualizacion;
+    private RegionVitivinicola region;
 
     // Constructor
-    public Bodega(String coordenadasUbicacion, String descripcion, String historia, String nombre, String periodoUpdate) {
+    public Bodega(String coordenadasUbicacion, String descripcion, String historia, String nombre, String periodoActualizacion, RegionVitivinicola region) {
         this.coordenadasUbicacion = coordenadasUbicacion;
         this.descripcion = descripcion;
         this.historia = historia;
         this.nombre = nombre;
-        this.periodoUpdate = periodoUpdate;
+        this.periodoActualizacion = periodoActualizacion;
+        this.region = region;
     }
 
     // Métodos getter y setter
@@ -56,12 +58,20 @@ public class Bodega {
     }
 
     // Getter y setter para periodoUpdate
-    public String getPeriodoUpdate() {
-        return periodoUpdate;
+    public String getPeriodoActualizacion() {
+        return periodoActualizacion;
     }
 
-    public void setPeriodoUpdate(String periodoUpdate) {
-        this.periodoUpdate = periodoUpdate;
+    public void setPeriodoActualizacion(String periodoUpdate) {
+        this.periodoActualizacion = periodoUpdate;
+    }
+
+    public RegionVitivinicola getRegion() {
+        return region;
+    }
+
+    public void setRegion(RegionVitivinicola regionVitivinicola) {
+        this.region = regionVitivinicola;
     }
 
     // Método toString para representar la clase Bodega como cadena
@@ -72,10 +82,11 @@ public class Bodega {
                 ", descripcion='" + descripcion + '\'' +
                 ", historia='" + historia + '\'' +
                 ", nombre='" + nombre + '\'' +
-                ", periodoUpdate='" + periodoUpdate + '\'' +
+                ", periodoUpdate='" + periodoActualizacion + '\'' +
                 '}';
     }
 
+/*
     public static void main(String[] args) {
         // Crear una instancia de Bodega
         Bodega bodega = new Bodega("40.7128° N, 74.0060° W", "Bodega en Nueva York", "Fundada en 1920", "Bodega Central", "2023-01-01");
@@ -85,9 +96,11 @@ public class Bodega {
 
         // Modificar algunos atributos usando setters
         bodega.setDescripcion("Bodega histórica en el centro de Nueva York");
-        bodega.setPeriodoUpdate("2024-05-21");
+        bodega.setPeriodoActualizacion("2024-05-21");
 
         // Imprimir la información actualizada de la bodega
         System.out.println(bodega);
     }
+
+*/
 }

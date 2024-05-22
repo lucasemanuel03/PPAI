@@ -2,6 +2,8 @@ package org.example.Controladores;
 
 import org.example.Clases.*;
 import org.example.interfaz.PantallaRankingVinos;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 public class GestorRankingVinos {
@@ -15,12 +17,13 @@ public class GestorRankingVinos {
     //Métodos
 
     //Del Dominio
-    public void opcionGenerarRankingVinos(PantallaRankingVinos pantalla){
+    public void opcionGenerarRankingVinos(PantallaRankingVinos pantalla, ArrayList<Vino> vinos){
         pantalla.solicitarSelFechaDesdeYHasta(this);
         System.out.println("Llego al gestor");
-        System.out.println("fechaAtributo: " + getFechaDesde());
 
-
+        if(fechaDesde != null && fechaHasta != null) {
+            buscarVinosConResenaEnPeriodo(vinos);
+        }
     }
 
 
@@ -57,6 +60,8 @@ public class GestorRankingVinos {
     public void tomarConfirmacionGenReporte(PantallaRankingVinos pantalla){
 
         System.out.println("Confirmacion tomada en el gestor!");
+       // this.buscarVinosConResenaEnPeriodo();
+
 
     }
 
@@ -64,14 +69,16 @@ public class GestorRankingVinos {
         //Cierra la ventana
         pantalla.dispose();
     }
-    public void buscarVinosConResenaEnPeriodo(Vino[] vinos){
-        for (int i = 0; i < vinos.length; i++) {
-            Boolean tieneReserva = vinos[i].tenesResenaDeTipoEnPeriodo();
+    public void buscarVinosConResenaEnPeriodo(ArrayList<Vino> vinos){
+        ArrayList<String> infoBodegas = new ArrayList<>();
+        for (int i = 0; i < vinos.size(); i++) {
+            Boolean tieneReserva = vinos.get(i).tenesResenaDeTipoEnPeriodo(this.fechaDesde, this.fechaHasta);
         if (tieneReserva) {
-            String nombre = vinos[i].getNombre();
-            Double precio = vinos[i].getPrecio();
-            String [] infoBodega = vinos[i].buscarInfoBodega();
-            String descVarietal = vinos[i].buscarVarietal();
+            String nombre = vinos.get(i).getNombre();
+            Double precio = vinos.get(i).getPrecio();
+            ArrayList<String> infoBodega = vinos.get(i).buscarInfoBodega();
+            System.out.println("InfBodegas: " + infoBodega);
+            String descVarietal = vinos.get(i).buscarVarietal();
             // Pendiente ver como guardar los datos
         }
         }
@@ -80,7 +87,7 @@ public class GestorRankingVinos {
 
     public void calcularPuntajeDeSommelierEnPeriodo(Vino[] vinos){
         for (int i = 0; i < vinos.length; i++) {
-            vinos[i].calcularPuntajeSommelierPromedio();
+            vinos[i].calcularPuntajeSommelierPromedio(this.fechaDesde, this.fechaHasta);
         }
     }
 

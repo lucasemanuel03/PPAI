@@ -4,15 +4,29 @@ public class Resena {
     private String comentario;
     private Boolean esPremium;
     private Date fechaResena;
-    private float puntaje;
+    private double puntaje;
     private Vino vino;
 
-    public Resena(String comentario, Boolean esPremium, Date fechaResena, float puntaje, Vino vino) {
+    public Resena(String comentario, Boolean esPremium, Date fechaResena, double puntaje, Vino vino) {
         this.comentario = comentario;
         this.esPremium = esPremium;
         this.fechaResena = fechaResena;
         this.puntaje = puntaje;
         this.vino = vino;
+    }
+
+    public boolean sosDeSommelier(){
+        return true;
+    }
+
+    public boolean sosDePeriodo(Date fechaDesde, Date fechaHasta){
+
+        if(fechaResena.after(fechaDesde) && fechaResena.before(fechaHasta)){
+            System.out.println("Reseña Verdadera");
+            return true;
+        }
+        System.out.println("Reseña no periodo");
+        return false;
     }
 
     public String getComentario() {
@@ -39,11 +53,11 @@ public class Resena {
         this.fechaResena = fechaResena;
     }
 
-    public float getPuntaje() {
+    public double getPuntaje() {
         return puntaje;
     }
 
-    public void setPuntaje(float puntaje) {
+    public void setPuntaje(double puntaje) {
         this.puntaje = puntaje;
     }
 

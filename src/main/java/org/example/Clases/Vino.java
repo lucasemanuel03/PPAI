@@ -1,6 +1,8 @@
 package org.example.Clases;
 import java.util.ArrayList;
 import java.lang.reflect.Array;
+import java.util.Date;
+
 import org.example.Clases.Resena;
 
 public class Vino {
@@ -10,7 +12,22 @@ public class Vino {
     private String nombre;
     private String notaCataBodega;
     private double precio;
+    private Bodega bodega;
     private ArrayList<Resena> resenas;
+
+
+    //METODOS
+
+    //Constructor
+    public Vino(int anada, String imagenEtiqueta, String nombre, String notaCataBodega, double precio,Bodega bodega, ArrayList<Resena> resenas) {
+        this.anada = anada;
+        this.imagenEtiqueta = imagenEtiqueta;
+        this.nombre = nombre;
+        this.notaCataBodega = notaCataBodega;
+        this.precio = precio;
+        this.bodega = bodega;
+        this.resenas = resenas;
+    }
 
     public int getAnada() {
         return anada;
@@ -52,16 +69,6 @@ public class Vino {
         this.precio = precio;
     }
 
-    // Constructor
-    public Vino(int anada, String imagenEtiqueta, String nombre, String notaCataBodega, double precio, ArrayList<Resena> resenas) {
-        this.anada = anada;
-        this.imagenEtiqueta = imagenEtiqueta;
-        this.nombre = nombre;
-        this.notaCataBodega = notaCataBodega;
-        this.precio = precio;
-        this.resenas = resenas;
-    }
-
     public ArrayList<Resena> getResenas() {
         return resenas;
     }
@@ -69,38 +76,49 @@ public class Vino {
     public void setResenas(ArrayList<Resena> resenas) {
         this.resenas = resenas;
     }
+
+
     // Metodos del dominio
-    public Boolean tenesResenaDeTipoEnPeriodo(){
+    public Boolean tenesResenaDeTipoEnPeriodo(Date fechaDesde, Date fechaHasta){
+        System.out.println("// Vino: " + getNombre());
+        for (int i = 0; i < resenas.size(); i++){
+            boolean tenesResenasPeriodo = resenas.get(i).sosDePeriodo(fechaDesde, fechaHasta);
+            if(tenesResenasPeriodo){
+                return true;
+            }
+        }
+
         return false;
     }
-    public String[] buscarInfoBodega(){
-        ;
+    public ArrayList<String> buscarInfoBodega(){
+        ArrayList<String> lista = new ArrayList<>();
+        return lista;
     }
     public String buscarVarietal(){
-
+        return "";
     }
-    public float calcularPuntajePromedio(ArrayList<Float> lista) {
+    public double calcularPuntajePromedio(ArrayList<Double> lista) {
         if (lista == null || lista.isEmpty()) {
             return 0;  // Retornar 0 si la lista es nula o está vacía
         }
 
-        float suma = 0;
-        for (Float numero : lista) {
+        double suma = 0;
+        for (double numero : lista) {
             suma += numero;
         }
 
         return suma / lista.size();
     }
-    public void calcularPuntajeSommelierPromedio(){
-        ArrayList<Float> puntajes = new ArrayList<>();
+    public void calcularPuntajeSommelierPromedio(Date fechaDesde, Date fechaHasta){
+        ArrayList<Double> puntajes = new ArrayList<>();
         for (int i = 0; i< resenas.size(); i++){
-            Boolean sosDePeriodo = resenas.get(i).sosDePeriodo();
-            Boolean sosDeSommelier = resenas.get(i).sosDeSommelier();
+            boolean sosDePeriodo = resenas.get(i).sosDePeriodo(fechaDesde, fechaHasta);
+            boolean sosDeSommelier = resenas.get(i).sosDeSommelier();
             if (sosDePeriodo && sosDeSommelier){
                 puntajes.add(resenas.get(i).getPuntaje());
             }
         }
-        float promedio = calcularPuntajePromedio(puntajes);
+        double promedio = calcularPuntajePromedio(puntajes);
     }
 
 }
@@ -123,4 +141,4 @@ public class Vino {
     }
 
     */
-}
+

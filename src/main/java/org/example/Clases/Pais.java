@@ -1,8 +1,10 @@
 package org.example.Clases;
 
+import java.util.ArrayList;
+
 public class Pais {
     private String nombre;
-    private Provincia[] provincias;
+    private ArrayList<Provincia> provincias;
 
     public String getNombre() {
         return nombre;
@@ -12,15 +14,15 @@ public class Pais {
         this.nombre = nombre;
     }
 
-    public Provincia[] getProvincias() {
+    public ArrayList<Provincia> getProvincias() {
         return provincias;
     }
 
-    public void setProvincias(Provincia[] provincias) {
+    public void setProvincias(ArrayList<Provincia> provincias) {
         this.provincias = provincias;
     }
 
-    public Pais(String nombre, Provincia[] provincias) {
+    public Pais(String nombre, ArrayList<Provincia> provincias) {
         this.nombre = nombre;
         this.provincias = provincias;
     }

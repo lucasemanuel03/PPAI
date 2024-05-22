@@ -1,4 +1,5 @@
 package org.example.interfaz;
+import org.example.Clases.Vino;
 import org.example.Controladores.GestorRankingVinos;
 
 import javax.swing.JFrame;
@@ -39,13 +40,15 @@ public class PantallaRankingVinos extends JFrame{
     private JComboBox<String> comboOpcVisualizacion;
     private JLabel lblTextOpcVisualizacion = new JLabel("Seleccione un Tipo de Visualización: ");
 
+    private final Object lock = new Object(); // Objeto de bloque
 
     //METODOS
 
-    public void opcionGenerarRankingVinos(GestorRankingVinos gestor){
+    public void opcionGenerarRankingVinos(GestorRankingVinos gestor, ArrayList<Vino> vinos){
         habilitarVentana(gestor);
         System.out.println("Llego opcGenerar pantalla");
-        gestor.opcionGenerarRankingVinos(this);
+        gestor.opcionGenerarRankingVinos(this, vinos);
+        System.out.println("DAAAAAAAAAAA");
 
 
     };
@@ -111,8 +114,21 @@ public class PantallaRankingVinos extends JFrame{
             gestor.tomarSelFechaDesdeYHasta(fechaDesde, fechaHasta, this);
             System.out.println("pantalla despues de opcGenerar: " + gestor.getFechaDesde());
 
+            synchronized (lock) {
+                lock.notify();
+            }
+
+
         });
 
+        // Esperar hasta que se libere el objeto de bloqueo
+        synchronized (lock) {
+            try {
+                lock.wait();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
         // Actualizar el contenido de la ventana
         //panelContenido.revalidate();
         //panelContenido.repaint();
