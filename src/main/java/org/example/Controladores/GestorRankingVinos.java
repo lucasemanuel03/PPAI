@@ -1,8 +1,11 @@
 package org.example.Controladores;
 
 
+import org.example.Datos.Datos;
+import org.example.Modelos.Vino;
 import org.example.interfaz.PantallaRankingVinos;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class GestorRankingVinos {
@@ -27,6 +30,7 @@ public class GestorRankingVinos {
 
     public void tomarSelFechaDesdeYHasta(Date fechaDesde, Date fechaHasta, PantallaRankingVinos pantalla) //verificar si hay que ingresar la pantalla también
     {
+        //VALIIDAR FECHAS FALTA HACER
         setFechaDesde(fechaDesde);
         setFechaHasta(fechaHasta);
         System.out.println("Se ejecuto el tomarSel");
@@ -49,6 +53,7 @@ public class GestorRankingVinos {
     public void tomarSelTipoVisualizacion(String tipoVisualizacion, PantallaRankingVinos pantalla){
         setTipoVisualizacionSeleccionado(tipoVisualizacion);
 
+        // Y CONTROLAR QUE SEA EXCEL TAMBIEN
         if (tipoVisualizacionSeleccionado != null){
             pantalla.solicitarConfirmacionGenReporte(this);
             System.out.println("correcto!");
@@ -58,7 +63,7 @@ public class GestorRankingVinos {
     public void tomarConfirmacionGenReporte(PantallaRankingVinos pantalla){
 
         System.out.println("Confirmacion tomada en el gestor!");
-
+        buscarVinosConResenaEnPeriodo();
     }
 
     public void cancelarCU(PantallaRankingVinos pantalla){
@@ -66,6 +71,29 @@ public class GestorRankingVinos {
         pantalla.dispose();
     }
 
+    public void buscarVinosConResenaEnPeriodo(){
+//        //Como no hay base de datos este metodo genera los vinos.
+//        Datos mocks = new Datos();
+//        ArrayList<Vino> vinos = mocks.getVinos();
+//
+//        for (int i = 0; i < vinos.size(); i++) {
+//            Boolean tieneReserva = vinos.get(i).tenesResenaDeTipoEnPeriodo();
+//            if (tieneReserva) {
+//                String nombre = vinos[i].getNombre();
+//                Double precio = vinos[i].getPrecio();
+//                String [] infoBodega = vinos[i].buscarInfoBodega();
+//                String descVarietal = vinos[i].buscarVarietal();
+//                // Pendiente ver como guardar los datos
+//            }
+//        }
+
+    }
+
+    public void calcularPuntajeDeSommelierEnPeriodo(Vino[] vinos){
+        for (int i = 0; i < vinos.length; i++) {
+            vinos[i].calcularPuntajeSommelierPromedio();
+        }
+    }
 
     //GETTERS AND SETTERS
     public Date getFechaDesde() {

@@ -13,21 +13,17 @@ public class App
 {
     public static void main( String[] args )
     {
+        //test excel
+//        PantallaExcel excel = new PantallaExcel();
+//        String[] test ={"Nicolas", "Lucas"};
+//        excel.generarExcel(test);
 
+        GestorRankingVinos gestor = new GestorRankingVinos();
 
-        //PantallaPrueba pantallaPrueba = new PantallaPrueba();
-        // pantallaPrueba.setVisible(true);
-
-        //prueba Vinos
-
-        PantallaExcel excel = new PantallaExcel();
-        String[] test ={"Nicolas", "Lucas"};
-        excel.generarExcel(test);
         PantallaRankingVinos pantallaRanking = new PantallaRankingVinos();
         pantallaRanking.setVisible(true);
-        GestorRankingVinos gestor = new GestorRankingVinos();
-        pantallaRanking.opcionGenerarRankingVinos(gestor);
 
+        pantallaRanking.opcionGenerarRankingVinos(gestor);
 
     }
 
