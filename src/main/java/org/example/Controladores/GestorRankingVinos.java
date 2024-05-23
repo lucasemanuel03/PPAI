@@ -2,6 +2,7 @@ package org.example.Controladores;
 
 import org.example.Clases.*;
 import org.example.interfaz.InterfazExcel;
+import org.example.interfaz.PantallaExcel;
 import org.example.interfaz.PantallaRankingVinos;
 
 import java.util.*;
@@ -126,8 +127,10 @@ public class    GestorRankingVinos {
                 return valor1.compareTo(valor2);
             }
 
-    });
-        // System.out.println("Lista Ordenada: " + this.arrayDatosVinos);
+        });
+        System.out.println("Lista Ordenada: " + this.arrayDatosVinos);
+        PantallaExcel interfazExcel = new PantallaExcel();
+        interfazExcel.generarExcel(this.arrayDatosVinos);
     }
 
 
