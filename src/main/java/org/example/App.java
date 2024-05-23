@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.Clases.*;
 import org.example.Controladores.GestorRankingVinos;
+import org.example.interfaz.InterfazExcel;
 import org.example.interfaz.PantallaRankingVinos;
 
 import java.util.ArrayList;
@@ -88,9 +89,9 @@ public class App
         Vino vino7 = new Vino(2020, "/imagen7.png", "San Juan Reserva", "Aroma a frutos rojos con notas de madera y especias.", 3000.0, bodega1, resenasVino7, varietal2);
 
         //RESEÑAS
-        Resena resena1 = new Resena("Excelente cuerpo y final prolongado.", false, fecha2,7.7, vino1);
-        Resena resena2 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,5.7, vino1);
-        Resena resena3 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,8.8, vino1);
+        Resena resena1 = new Resena("Excelente cuerpo y final prolongado.", true, fecha2,7.7, vino1);
+        Resena resena2 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,5.7, vino1);
+        Resena resena3 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,8.8, vino1);
         Resena resena4 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,6.7, vino2);
         Resena resena5 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,7.2, vino2);
         Resena resena6 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,8.9, vino3);
@@ -110,13 +111,13 @@ public class App
 
         //CREAR ARRAY VINOS
         ArrayList<Vino> vinos = new ArrayList<>();
-       // vinos.add(vino1);
-        //vinos.add(vino2);
+        vinos.add(vino1);
+        vinos.add(vino2);
         vinos.add(vino3);
-        // vinos.add(vino4);
-        //vinos.add(vino5);
-        //vinos.add(vino6);
-        //vinos.add(vino7);
+        vinos.add(vino4);
+        vinos.add(vino5);
+        vinos.add(vino6);
+        vinos.add(vino7);
 
 
         // System.out.println("RESEÑAS DE VINO" + vino1.getNombre() + vino1.getResenas());
@@ -125,8 +126,10 @@ public class App
 
         PantallaRankingVinos pantallaRanking = new PantallaRankingVinos();
         pantallaRanking.setVisible(true);
+        InterfazExcel interfazExcel = new InterfazExcel();
+
         GestorRankingVinos gestor = new GestorRankingVinos();
-        pantallaRanking.opcionGenerarRankingVinos(gestor, vinos);
+        pantallaRanking.opcionGenerarRankingVinos(gestor, vinos, interfazExcel);
 
 
     }
