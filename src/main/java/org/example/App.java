@@ -2,7 +2,7 @@ package org.example;
 
 import org.example.Clases.*;
 import org.example.Controladores.GestorRankingVinos;
-import org.example.interfaz.InterfazExcel;
+import org.example.interfaz.PantallaExcel;
 import org.example.interfaz.PantallaRankingVinos;
 
 import java.util.ArrayList;
@@ -126,10 +126,10 @@ public class App
 
         PantallaRankingVinos pantallaRanking = new PantallaRankingVinos();
         pantallaRanking.setVisible(true);
-        InterfazExcel interfazExcel = new InterfazExcel();
+
 
         GestorRankingVinos gestor = new GestorRankingVinos();
-        pantallaRanking.opcionGenerarRankingVinos(gestor, vinos, interfazExcel);
+        pantallaRanking.opcionGenerarRankingVinos(gestor, vinos);
 
 
     }

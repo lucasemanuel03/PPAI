@@ -43,9 +43,9 @@ public class PantallaRankingVinos extends JFrame{
 
     //METODOS
 
-    public void opcionGenerarRankingVinos(GestorRankingVinos gestor, ArrayList<Vino> vinos, InterfazExcel interfazExcel){
+    public void opcionGenerarRankingVinos(GestorRankingVinos gestor, ArrayList<Vino> vinos){
         habilitarVentana(gestor);
-        gestor.opcionGenerarRankingVinos(this, vinos, interfazExcel);
+        gestor.opcionGenerarRankingVinos(this, vinos);
 
     };
     public void habilitarVentana(GestorRankingVinos gestor){

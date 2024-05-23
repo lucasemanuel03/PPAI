@@ -1,7 +1,6 @@
 package org.example.Controladores;
 
 import org.example.Clases.*;
-import org.example.interfaz.InterfazExcel;
 import org.example.interfaz.PantallaExcel;
 import org.example.interfaz.PantallaRankingVinos;
 
@@ -22,7 +21,7 @@ public class    GestorRankingVinos {
     //Métodos
 
     //Del Dominio
-    public void opcionGenerarRankingVinos(PantallaRankingVinos pantalla, ArrayList<Vino> vinos, InterfazExcel interfazExcel){
+    public void opcionGenerarRankingVinos(PantallaRankingVinos pantalla, ArrayList<Vino> vinos){
         pantalla.solicitarSelFechaDesdeYHasta(this);
         if(fechaDesde != null && fechaHasta != null) {
             buscarVinosConResenaEnPeriodo(vinos);
@@ -31,8 +30,9 @@ public class    GestorRankingVinos {
 
         ordenarVinos();
 
-        //Mensaje a la interfazExcel para que genere el archivo
-        interfazExcel.generarArchivoExcel(this.primeros10Vinos);
+        //Se genera el excel
+        PantallaExcel interfazExcel = new PantallaExcel();
+        interfazExcel.generarExcel(this.arrayDatosVinos);
 
         //Mensaje a la pantalla para que informe la generación del archivo
         pantalla.informarGeneracionArchivo();
@@ -131,8 +131,6 @@ public class    GestorRankingVinos {
         });
         setPrimeros10Vinos( this.arrayDatosVinos.subList(0, Math.min(this.arrayDatosVinos.size(), 10)));
         System.out.println("Lista Ordenada: " + this.arrayDatosVinos);
-        PantallaExcel interfazExcel = new PantallaExcel();
-        interfazExcel.generarExcel(this.arrayDatosVinos);
 
     };
 
