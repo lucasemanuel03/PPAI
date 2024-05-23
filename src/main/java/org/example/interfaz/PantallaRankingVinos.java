@@ -33,15 +33,13 @@ public class PantallaRankingVinos extends JFrame{
     private JButton btnSelectTipoVisualizacion = new JButton("Seleccionar");
     private JButton btnConfirmar = new JButton("CONFIRMAR");
     private JButton btnCancelar = new JButton("Cancelar");
-    private JTextArea txtAreaDatos = new JTextArea();
 
     //Pedir Opciones
     private JComboBox<String> comboOpcResena;
     private JLabel lblTextOpcResena = new JLabel("Seleccione un Tipo de Reseña: ");
     private JLabel lblTextOpcVisualizacion = new JLabel("Seleccione un Tipo de Visualización: ");
-
     private final Object lock = new Object(); // Objeto de bloque
-    private final Object lock1 = new Object(); // Objeto de bloque
+
 
     //METODOS
 
