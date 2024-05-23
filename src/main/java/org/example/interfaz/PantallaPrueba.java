@@ -106,6 +106,7 @@ public class PantallaPrueba extends JFrame {
 
             System.out.println("FechaDesde: " + fechaDesde);
             System.out.println("fecha Hasta: " + fechaHasta);
+
         });
     }
     public String tomarSelFechaDesde(){

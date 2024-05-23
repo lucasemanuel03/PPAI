@@ -1,4 +1,5 @@
 package org.example.interfaz;
+import org.example.Clases.Vino;
 import org.example.Controladores.GestorRankingVinos;
 
 import javax.swing.JFrame;
@@ -18,7 +19,6 @@ public class PantallaRankingVinos extends JFrame{
     private JPanel panelPrincipal = new JPanel();
     private JPanel panelTitulo = new JPanel();
     private JPanel panelContenido = new JPanel();
-    private JPanel panelSelResena = new JPanel();
     private JLabel titulo = new JLabel("BON VINO", SwingConstants.CENTER);
     private JLabel subtitulo = new JLabel(":: Ranking de Vinos ::", SwingConstants.CENTER);
 
@@ -27,6 +27,7 @@ public class PantallaRankingVinos extends JFrame{
     private JTextField lblFechaHasta = new JTextField("01-01-2000", 20);
     private JLabel lblTextFechaDesde = new JLabel("Fecha Inicio: ");
     private JLabel lblTextFechaHasta = new JLabel("Fecha de Fin: ");
+    private JLabel lblTextGenArchivo = new JLabel("Archivo Excel Generado!");
     private JButton btnAceptar = new JButton("Aceptar");
     private JButton btnSelectResena = new JButton("Seleccionar");
     private JButton btnSelectTipoVisualizacion = new JButton("Seleccionar");
@@ -36,17 +37,15 @@ public class PantallaRankingVinos extends JFrame{
     //Pedir Opciones
     private JComboBox<String> comboOpcResena;
     private JLabel lblTextOpcResena = new JLabel("Seleccione un Tipo de Reseña: ");
-    private JComboBox<String> comboOpcVisualizacion;
     private JLabel lblTextOpcVisualizacion = new JLabel("Seleccione un Tipo de Visualización: ");
+    private final Object lock = new Object(); // Objeto de bloque
 
 
     //METODOS
 
-    public void opcionGenerarRankingVinos(GestorRankingVinos gestor){
+    public void opcionGenerarRankingVinos(GestorRankingVinos gestor, ArrayList<Vino> vinos, InterfazExcel interfazExcel){
         habilitarVentana(gestor);
-        System.out.println("Llego opcGenerar pantalla");
-        gestor.opcionGenerarRankingVinos(this);
-
+        gestor.opcionGenerarRankingVinos(this, vinos, interfazExcel);
 
     };
     public void habilitarVentana(GestorRankingVinos gestor){
@@ -111,8 +110,20 @@ public class PantallaRankingVinos extends JFrame{
             gestor.tomarSelFechaDesdeYHasta(fechaDesde, fechaHasta, this);
             System.out.println("pantalla despues de opcGenerar: " + gestor.getFechaDesde());
 
+            synchronized (lock) {
+                lock.notify();
+            }
+
         });
 
+        // Esperar hasta que se libere el objeto de bloqueo
+        synchronized (lock) {
+            try {
+                lock.wait();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
         // Actualizar el contenido de la ventana
         //panelContenido.revalidate();
         //panelContenido.repaint();
@@ -188,7 +199,8 @@ public class PantallaRankingVinos extends JFrame{
 
     public void solicitarSelTipoVisualizacion(GestorRankingVinos gestor){
 
-        String[] tipoVisualizaciones = {"PDF", "Por Pantalla", "Archivo Excel"};
+        // String[] tipoVisualizaciones = {"PDF", "Por Pantalla", "Archivo Excel"};
+        String[] tipoVisualizaciones = gestor.getTipoVisualizaciones();
         comboOpcResena = new JComboBox<>(tipoVisualizaciones);
 
         panelContenido.add(lblTextOpcVisualizacion);
@@ -224,7 +236,17 @@ public class PantallaRankingVinos extends JFrame{
     public void tomarConfirmacionGenReporte(GestorRankingVinos gestor){
         btnConfirmar.addActionListener(e -> {
             gestor.tomarConfirmacionGenReporte(this);
+            panelContenido.add(lblTextGenArchivo);
+            panelContenido.revalidate();
+            panelContenido.repaint();
+            System.out.println(gestor.getArrayDatosVinos());
+
         });
+
+    }
+
+    public void informarGeneracionArchivo(){
+        //panelContenido.add(lblTextGenArchivo);
 
     }
 

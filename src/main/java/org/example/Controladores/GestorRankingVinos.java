@@ -1,44 +1,52 @@
 package org.example.Controladores;
 
-
-import org.example.Datos.Datos;
-import org.example.Modelos.Vino;
+import org.example.Clases.*;
+import org.example.interfaz.InterfazExcel;
 import org.example.interfaz.PantallaRankingVinos;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
-public class GestorRankingVinos {
+public class    GestorRankingVinos {
 
     // Atributos
     Date fechaDesde;
     Date fechaHasta;
+    String[] tipoVisualizaciones = {"PDF", "Por Pantalla", "Archivo Excel"};
     String tipoResenaSeleccionado;
     String tipoVisualizacionSeleccionado;
+    boolean confirmacionGeneracion;
+    List<List<Object>> arrayDatosVinos = new ArrayList<>();
 
     //Métodos
 
     //Del Dominio
-    public void opcionGenerarRankingVinos(PantallaRankingVinos pantalla){
+    public void opcionGenerarRankingVinos(PantallaRankingVinos pantalla, ArrayList<Vino> vinos, InterfazExcel interfazExcel){
         pantalla.solicitarSelFechaDesdeYHasta(this);
-        System.out.println("Llego al gestor");
-        System.out.println("fechaAtributo: " + getFechaDesde());
+        if(fechaDesde != null && fechaHasta != null) {
+            buscarVinosConResenaEnPeriodo(vinos);
+            // ordenarVinos();
+        }
 
+        ordenarVinos();
 
+        //Mensaje a la interfazExcel para que genere el archivo
+        interfazExcel.generarArchivoExcel(this.arrayDatosVinos);
+
+        //Mensaje a la pantalla para que informe la generación del archivo
+        pantalla.informarGeneracionArchivo();
     }
 
 
     public void tomarSelFechaDesdeYHasta(Date fechaDesde, Date fechaHasta, PantallaRankingVinos pantalla) //verificar si hay que ingresar la pantalla también
     {
-        //VALIIDAR FECHAS FALTA HACER
         setFechaDesde(fechaDesde);
         setFechaHasta(fechaHasta);
-        System.out.println("Se ejecuto el tomarSel");
+        // System.out.println("Se ejecuto el tomarSel");
 
         //Llamada a la pantalla para que muestre los tipos de reseñas
         if (fechaDesde != null && fechaHasta != null){
             pantalla.solicitarSelTipoResena(this);
-            System.out.println("Se ejucto el if");
+
         }
     }
 
@@ -53,49 +61,95 @@ public class GestorRankingVinos {
     public void tomarSelTipoVisualizacion(String tipoVisualizacion, PantallaRankingVinos pantalla){
         setTipoVisualizacionSeleccionado(tipoVisualizacion);
 
-        // Y CONTROLAR QUE SEA EXCEL TAMBIEN
         if (tipoVisualizacionSeleccionado != null){
             pantalla.solicitarConfirmacionGenReporte(this);
-            System.out.println("correcto!");
+            // System.out.println("correcto!");
         }
     }
 
     public void tomarConfirmacionGenReporte(PantallaRankingVinos pantalla){
 
+        setConfirmacionGeneracion(true);
+
         System.out.println("Confirmacion tomada en el gestor!");
-        buscarVinosConResenaEnPeriodo();
+       // this.buscarVinosConResenaEnPeriodo();
+
+
     }
 
     public void cancelarCU(PantallaRankingVinos pantalla){
         //Cierra la ventana
         pantalla.dispose();
     }
+    public void buscarVinosConResenaEnPeriodo(ArrayList<Vino> vinos){
+        ArrayList<Object> vinosSeleccionados = new ArrayList<>();
+        ArrayList<String> infoBodegas = new ArrayList<>();
+        for (int i = 0; i < vinos.size(); i++) {
+            Boolean tieneResenaValidas = vinos.get(i).tenesResenaDeTipoEnPeriodo(this.fechaDesde, this.fechaHasta);
 
-    public void buscarVinosConResenaEnPeriodo(){
-//        //Como no hay base de datos este metodo genera los vinos.
-//        Datos mocks = new Datos();
-//        ArrayList<Vino> vinos = mocks.getVinos();
-//
-//        for (int i = 0; i < vinos.size(); i++) {
-//            Boolean tieneReserva = vinos.get(i).tenesResenaDeTipoEnPeriodo();
-//            if (tieneReserva) {
-//                String nombre = vinos[i].getNombre();
-//                Double precio = vinos[i].getPrecio();
-//                String [] infoBodega = vinos[i].buscarInfoBodega();
-//                String descVarietal = vinos[i].buscarVarietal();
-//                // Pendiente ver como guardar los datos
-//            }
-//        }
+            if (tieneResenaValidas) {
+                String nombre = vinos.get(i).getNombre();
+                Double precio = vinos.get(i).getPrecio();
+                ArrayList<String> infoBodega = vinos.get(i).buscarInfoBodega();
+                System.out.println("InfBodegas: " + infoBodega);
+                String descVarietal = vinos.get(i).buscarVarietal();
+                // Pendiente ver como guardar los datos
+
+                //Luego de determinar que el vino tiene reseñas validas, calcula el promedio de puntaje de reseñas.
+                //VER QUE NO ES IGAUL A LA SOLUCION
+                double promedio = vinos.get(i).calcularPuntajeSommelierPromedio(this.fechaDesde, this.fechaHasta);
+
+                //AGREGAR VINO AL ARRAY DE SELECCIONADOS
+                ArrayList<Object> datosVinoSeleccionado = new ArrayList<>();
+                datosVinoSeleccionado.add(promedio);
+                datosVinoSeleccionado.add(nombre);
+                datosVinoSeleccionado.add(precio);
+                datosVinoSeleccionado.addAll(infoBodega);
+                datosVinoSeleccionado.add(descVarietal);
+
+                this.arrayDatosVinos.add(datosVinoSeleccionado);
+                System.out.println("Datos del vino seleccionado: " + datosVinoSeleccionado);
+            }
+
+            }
 
     }
 
-    public void calcularPuntajeDeSommelierEnPeriodo(Vino[] vinos){
-        for (int i = 0; i < vinos.length; i++) {
-            vinos[i].calcularPuntajeSommelierPromedio();
-        }
+    public void ordenarVinos(){
+        Collections.sort(this.arrayDatosVinos, new Comparator<List<Object>>() {
+            @Override
+            public int compare(List<Object> lista1, List<Object> lista2) {
+                // Convertir el primer elemento de cada sublista a Double para comparar
+                Double valor1 = (Double) lista1.get(0);
+                Double valor2 = (Double) lista2.get(0);
+                // Comparar los valores
+                return valor1.compareTo(valor2);
+            }
+
+    });
+        // System.out.println("Lista Ordenada: " + this.arrayDatosVinos);
     }
+
 
     //GETTERS AND SETTERS
+
+
+    public boolean isConfirmacionGeneracion() {
+        return confirmacionGeneracion;
+    }
+
+    public void setConfirmacionGeneracion(boolean confirmacionGeneracion) {
+        this.confirmacionGeneracion = confirmacionGeneracion;
+    }
+
+    public List<List<Object>> getArrayDatosVinos() {
+        return arrayDatosVinos;
+    }
+
+    public void setArrayDatosVinos(List<List<Object>> arrayDatosVinos) {
+        this.arrayDatosVinos = arrayDatosVinos;
+    }
+
     public Date getFechaDesde() {
         return fechaDesde;
     }
@@ -126,5 +180,13 @@ public class GestorRankingVinos {
 
     public void setTipoVisualizacionSeleccionado(String tipoVisualizacionSeleccionado) {
         this.tipoVisualizacionSeleccionado = tipoVisualizacionSeleccionado;
+    }
+
+    public String[] getTipoVisualizaciones() {
+        return tipoVisualizaciones;
+    }
+
+    public void setTipoVisualizaciones(String[] tipoVisualizaciones) {
+        this.tipoVisualizaciones = tipoVisualizaciones;
     }
 }
