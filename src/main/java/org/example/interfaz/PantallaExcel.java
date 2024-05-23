@@ -18,10 +18,9 @@ public class PantallaExcel {
 
 
         Sheet sheet = workbook.createSheet("excel-sheet");
-        sheet.setColumnWidth(0, 6000);
-        sheet.setColumnWidth(1, 4000);
-
-
+        for (int i = 0; i < 9; i++) {
+            sheet.setColumnWidth(i, 5000);
+        }
 
         Row row0 = sheet.createRow(0);
 
@@ -30,17 +29,25 @@ public class PantallaExcel {
         row0.createCell(2).setCellValue("Calificacion Somemlier");
         row0.createCell(3).setCellValue("Calificacion General");
         row0.createCell(4).setCellValue("Precio Sugerido");
+        row0.createCell(5).setCellValue("Bodega");
+        row0.createCell(6).setCellValue("Region");
+        row0.createCell(7).setCellValue("Pais");
+        row0.createCell(8).setCellValue("Varietal");
 
         for (int i = 0; i < arrayDatosVinos.size(); i++) {
-            System.out.println(arrayDatosVinos.get(i));
+            List<Object> vino = arrayDatosVinos.get(i);
 
             Row row1 = sheet.createRow(i+1);
 
             row1.createCell(0).setCellValue(i+1);
-            row1.createCell(1).setCellValue("test");
-            row1.createCell(2).setCellValue(9999999);
-            row1.createCell(3).setCellValue("william.john@gmail.com");
-            row1.createCell(4).setCellValue("700000.00");
+            row1.createCell(1).setCellValue(vino.get(1).toString());
+            row1.createCell(2).setCellValue(7);
+            row1.createCell(3).setCellValue(vino.get(0).toString());
+            row1.createCell(4).setCellValue(vino.get(2).toString());
+            row1.createCell(5).setCellValue(vino.get(3).toString());
+            row1.createCell(6).setCellValue(vino.get(4).toString());
+            row1.createCell(7).setCellValue(vino.get(5).toString());
+            row1.createCell(8).setCellValue(vino.get(6).toString());
         }
 
 
