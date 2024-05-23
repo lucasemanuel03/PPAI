@@ -239,7 +239,7 @@ public class PantallaRankingVinos extends JFrame{
             panelContenido.add(lblTextGenArchivo);
             panelContenido.revalidate();
             panelContenido.repaint();
-            System.out.println(gestor.getArrayDatosVinos());
+            System.out.println(gestor.getPrimeros10Vinos());
 
         });
 

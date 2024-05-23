@@ -17,6 +17,7 @@ public class    GestorRankingVinos {
     String tipoVisualizacionSeleccionado;
     boolean confirmacionGeneracion;
     List<List<Object>> arrayDatosVinos = new ArrayList<>();
+    List<List<Object>> primeros10Vinos = new ArrayList<>();
 
     //Métodos
 
@@ -31,7 +32,7 @@ public class    GestorRankingVinos {
         ordenarVinos();
 
         //Mensaje a la interfazExcel para que genere el archivo
-        interfazExcel.generarArchivoExcel(this.arrayDatosVinos);
+        interfazExcel.generarArchivoExcel(this.primeros10Vinos);
 
         //Mensaje a la pantalla para que informe la generación del archivo
         pantalla.informarGeneracionArchivo();
@@ -128,10 +129,14 @@ public class    GestorRankingVinos {
             }
 
         });
+        setPrimeros10Vinos( this.arrayDatosVinos.subList(0, Math.min(this.arrayDatosVinos.size(), 10)));
         System.out.println("Lista Ordenada: " + this.arrayDatosVinos);
         PantallaExcel interfazExcel = new PantallaExcel();
         interfazExcel.generarExcel(this.arrayDatosVinos);
-    }
+
+    };
+
+
 
 
     //GETTERS AND SETTERS
@@ -191,5 +196,13 @@ public class    GestorRankingVinos {
 
     public void setTipoVisualizaciones(String[] tipoVisualizaciones) {
         this.tipoVisualizaciones = tipoVisualizaciones;
+    }
+
+    public void setPrimeros10Vinos(List<List<Object>> primeros10Vinos) {
+        this.primeros10Vinos = primeros10Vinos;
+    }
+
+    public List<List<Object>> getPrimeros10Vinos() {
+        return primeros10Vinos;
     }
 }
