@@ -78,7 +78,6 @@ public class App
         ArrayList<Resena> resenasVino9 = new ArrayList<>();
         ArrayList<Resena> resenasVino10 = new ArrayList<>();
         ArrayList<Resena> resenasVino11 = new ArrayList<>();
-        ArrayList<Resena> resenasVino12 = new ArrayList<>();
 
         //CREACION DE VARIETALES
         Varietal varietal1 = new Varietal("Malbec", 80.0);
@@ -131,6 +130,7 @@ public class App
         resenasVino9.add(resena13);
         resenasVino10.add(resena14);
         resenasVino11.add(resena15);
+        resenasVino11.add(resena16);
 
         //CREAR ARRAY VINOS
         ArrayList<Vino> vinos = new ArrayList<>();
