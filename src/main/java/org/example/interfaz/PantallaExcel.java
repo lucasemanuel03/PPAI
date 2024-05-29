@@ -24,14 +24,14 @@ public class PantallaExcel {
 
         Row row0 = sheet.createRow(0);
 
-        row0.createCell(0).setCellValue("Posicion");
+        row0.createCell(0).setCellValue("Posición");
         row0.createCell(1).setCellValue("Nombre");
-        row0.createCell(2).setCellValue("Calificacion Somemlier");
-        row0.createCell(3).setCellValue("Calificacion General");
+        row0.createCell(2).setCellValue("Calificación General");
+        row0.createCell(3).setCellValue("Calificación Sommelier");
         row0.createCell(4).setCellValue("Precio Sugerido");
         row0.createCell(5).setCellValue("Bodega");
-        row0.createCell(6).setCellValue("Region");
-        row0.createCell(7).setCellValue("Pais");
+        row0.createCell(6).setCellValue("Región");
+        row0.createCell(7).setCellValue("País");
         row0.createCell(8).setCellValue("Varietal");
 
         for (int i = 0; i < arrayDatosVinos.size(); i++) {
@@ -53,7 +53,7 @@ public class PantallaExcel {
 
         try {
             FileOutputStream out = new FileOutputStream(
-                    new File("excelTEST.xlsx"));
+                    new File("ranking-10-Vinos.xlsx"));
             workbook.write(out);
             out.close();
         } catch (Exception e) {

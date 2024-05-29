@@ -91,10 +91,10 @@ public class App
         Vino vino5 = new Vino(2023, "/imagen5.png", "Merlot Clásico", "Aroma a frutos rojos con notas de madera y especias.", 1300.0, bodega2, resenasVino5, varietal2);
         Vino vino6 = new Vino(2018, "/imagen6.png", "Vino de La Rioja", "Aroma a frutos rojos con notas de madera y especias.", 6000.0, bodega2, resenasVino6, varietal1);
         Vino vino7 = new Vino(2020, "/imagen7.png", "San Juan Reserva", "Aroma a frutos rojos con notas de madera y especias.", 3000.0, bodega1, resenasVino7, varietal2);
-        Vino vino8 = new Vino(2020, "/imagen8.png", "Vino Numero 8", "Aroma a frutos rojos con notas de madera y especias.", 1500.0, bodega1, resenasVino4, varietal1);
-        Vino vino9 = new Vino(2020, "/imagen9.png", "Tinto Gaucho", "Aroma a frutos rojos con notas de madera y especias.", 1700.0, bodega2, resenasVino5, varietal2);
-        Vino vino10 = new Vino(2018, "/imagen10.png", "Vino Selección", "Aroma a frutos rojos con notas de madera y especias.", 4000.0, bodega2, resenasVino6, varietal1);
-        Vino vino11 = new Vino(2021, "/imagen11.png", "Vino El Cóndor", "Aroma a frutos rojos con notas de madera y especias.", 5500.0, bodega1, resenasVino7, varietal2);
+        Vino vino8 = new Vino(2020, "/imagen8.png", "Vino Numero 8", "Aroma a frutos rojos con notas de madera y especias.", 1500.0, bodega1, resenasVino8, varietal1);
+        Vino vino9 = new Vino(2020, "/imagen9.png", "Tinto Gaucho", "Aroma a frutos rojos con notas de madera y especias.", 1700.0, bodega2, resenasVino9, varietal2);
+        Vino vino10 = new Vino(2018, "/imagen10.png", "Vino Selección", "Aroma a frutos rojos con notas de madera y especias.", 4000.0, bodega2, resenasVino10, varietal1);
+        Vino vino11 = new Vino(2021, "/imagen11.png", "Vino El Cóndor", "Aroma a frutos rojos con notas de madera y especias.", 5500.0, bodega1, resenasVino11, varietal2);
 
         //RESEÑAS
         Resena resena1 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,7.7, vino1);

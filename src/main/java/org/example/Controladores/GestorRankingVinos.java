@@ -125,7 +125,7 @@ public class    GestorRankingVinos {
                 Double valor1 = (Double) lista1.get(0);
                 Double valor2 = (Double) lista2.get(0);
                 // Comparar los valores
-                return valor1.compareTo(valor2);
+                return valor2.compareTo(valor1); // Ordena de mayor a menor
             }
 
         });
