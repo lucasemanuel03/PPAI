@@ -74,6 +74,11 @@ public class App
         ArrayList<Resena> resenasVino5 = new ArrayList<>();
         ArrayList<Resena> resenasVino6 = new ArrayList<>();
         ArrayList<Resena> resenasVino7 = new ArrayList<>();
+        ArrayList<Resena> resenasVino8 = new ArrayList<>();
+        ArrayList<Resena> resenasVino9 = new ArrayList<>();
+        ArrayList<Resena> resenasVino10 = new ArrayList<>();
+        ArrayList<Resena> resenasVino11 = new ArrayList<>();
+        ArrayList<Resena> resenasVino12 = new ArrayList<>();
 
         //CREACION DE VARIETALES
         Varietal varietal1 = new Varietal("Malbec", 80.0);
@@ -87,16 +92,28 @@ public class App
         Vino vino5 = new Vino(2023, "/imagen5.png", "Merlot Clásico", "Aroma a frutos rojos con notas de madera y especias.", 1300.0, bodega2, resenasVino5, varietal2);
         Vino vino6 = new Vino(2018, "/imagen6.png", "Vino de La Rioja", "Aroma a frutos rojos con notas de madera y especias.", 6000.0, bodega2, resenasVino6, varietal1);
         Vino vino7 = new Vino(2020, "/imagen7.png", "San Juan Reserva", "Aroma a frutos rojos con notas de madera y especias.", 3000.0, bodega1, resenasVino7, varietal2);
+        Vino vino8 = new Vino(2020, "/imagen8.png", "Vino Numero 8", "Aroma a frutos rojos con notas de madera y especias.", 1500.0, bodega1, resenasVino4, varietal1);
+        Vino vino9 = new Vino(2020, "/imagen9.png", "Tinto Gaucho", "Aroma a frutos rojos con notas de madera y especias.", 1700.0, bodega2, resenasVino5, varietal2);
+        Vino vino10 = new Vino(2018, "/imagen10.png", "Vino Selección", "Aroma a frutos rojos con notas de madera y especias.", 4000.0, bodega2, resenasVino6, varietal1);
+        Vino vino11 = new Vino(2021, "/imagen11.png", "Vino El Cóndor", "Aroma a frutos rojos con notas de madera y especias.", 5500.0, bodega1, resenasVino7, varietal2);
 
         //RESEÑAS
-        Resena resena1 = new Resena("Excelente cuerpo y final prolongado.", true, fecha2,7.7, vino1);
+        Resena resena1 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,7.7, vino1);
         Resena resena2 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,5.7, vino1);
-        Resena resena3 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,8.8, vino1);
+        Resena resena3 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,8.8, vino1); //NO PREMIUM
         Resena resena4 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,6.7, vino2);
-        Resena resena5 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,7.2, vino2);
+        Resena resena5 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,7.2, vino2); //NO PREMIUM
         Resena resena6 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,8.9, vino3);
         Resena resena7 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,9.7, vino3);
-        Resena resena8 = new Resena("Excelente cuerpo y final prolongado.", false, fecha2,9.1, vino4);
+        Resena resena8 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,9.1, vino4);
+        Resena resena9 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,9.1, vino5);
+        Resena resena10 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,9.0, vino6);
+        Resena resena11 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,7.1, vino7);
+        Resena resena12 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,6.1, vino8);
+        Resena resena13 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,8.5, vino9);
+        Resena resena14 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,4.0, vino10); // RESEÑA CON PEOR PUNTAJE
+        Resena resena15 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,7.1, vino11);
+        Resena resena16 = new Resena("Excelente cuerpo y final prolongado.", true, fecha2,6.3, vino11); // FECHA FUERA DE PERIODO
 
         //AÑADIR RESEÑAS A VINOS
         resenasVino1.add(resena1);
@@ -107,7 +124,13 @@ public class App
         resenasVino3.add(resena6);
         resenasVino3.add(resena7);
         resenasVino4.add(resena8);
-
+        resenasVino5.add(resena9);
+        resenasVino6.add(resena10);
+        resenasVino7.add(resena11);
+        resenasVino8.add(resena12);
+        resenasVino9.add(resena13);
+        resenasVino10.add(resena14);
+        resenasVino11.add(resena15);
 
         //CREAR ARRAY VINOS
         ArrayList<Vino> vinos = new ArrayList<>();
@@ -118,19 +141,21 @@ public class App
         vinos.add(vino5);
         vinos.add(vino6);
         vinos.add(vino7);
+        vinos.add(vino8);
+        vinos.add(vino9);
+        vinos.add(vino10);
+        vinos.add(vino11);
 
 
         // System.out.println("RESEÑAS DE VINO" + vino1.getNombre() + vino1.getResenas());
 
         // INICIO DEL CU
-
+        PantallaExcel pantallaExcel = new PantallaExcel();
         PantallaRankingVinos pantallaRanking = new PantallaRankingVinos();
         pantallaRanking.setVisible(true);
 
-
         GestorRankingVinos gestor = new GestorRankingVinos();
-        pantallaRanking.opcionGenerarRankingVinos(gestor, vinos);
-
+        pantallaRanking.opcionGenerarRankingVinos(gestor, vinos, pantallaExcel);
 
     }
 

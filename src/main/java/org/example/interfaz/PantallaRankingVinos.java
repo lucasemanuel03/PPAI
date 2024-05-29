@@ -43,9 +43,9 @@ public class PantallaRankingVinos extends JFrame{
 
     //METODOS
 
-    public void opcionGenerarRankingVinos(GestorRankingVinos gestor, ArrayList<Vino> vinos){
+    public void opcionGenerarRankingVinos(GestorRankingVinos gestor, ArrayList<Vino> vinos, PantallaExcel pantallaExcel){
         habilitarVentana(gestor);
-        gestor.opcionGenerarRankingVinos(this, vinos);
+        gestor.opcionGenerarRankingVinos(this, vinos, pantallaExcel);
 
     };
     public void habilitarVentana(GestorRankingVinos gestor){
@@ -108,8 +108,6 @@ public class PantallaRankingVinos extends JFrame{
 
             // Mensaje al gestor para que tome las fechas
             gestor.tomarSelFechaDesdeYHasta(fechaDesde, fechaHasta, this);
-            System.out.println("pantalla despues de opcGenerar: " + gestor.getFechaDesde());
-
             synchronized (lock) {
                 lock.notify();
             }
@@ -159,7 +157,6 @@ public class PantallaRankingVinos extends JFrame{
 
         if (fechaDesde.before(fechaHasta)) {
             System.out.println("La fecha es correcta");
-
             return true;
         }
         System.out.println("La fecha no es correcta");
@@ -248,6 +245,11 @@ public class PantallaRankingVinos extends JFrame{
     public void informarGeneracionArchivo(){
         //panelContenido.add(lblTextGenArchivo);
 
+    }
+
+    public void informarNoHayVinosEnPeriodo() {
+        String mensaje = "¡No se encontraron Vinos con reseñas en ese periodo";
+        JOptionPane.showMessageDialog(this, mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
     }
 
 

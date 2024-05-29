@@ -56,7 +56,6 @@ public class PantallaExcel {
                     new File("excelTEST.xlsx"));
             workbook.write(out);
             out.close();
-            System.out.println("FUNCIONO");
         } catch (Exception e) {
             e.printStackTrace();
         }

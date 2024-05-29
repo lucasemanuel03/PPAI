@@ -22,10 +22,10 @@ public class Resena {
     public boolean sosDePeriodo(Date fechaDesde, Date fechaHasta){
 
         if(fechaResena.after(fechaDesde) && fechaResena.before(fechaHasta)){
-            System.out.println("Reseña Verdadera");
+            // System.out.println("Reseña Verdadera");
             return true;
         }
-        System.out.println("Reseña no periodo");
+        // System.out.println("Reseña no periodo");
         return false;
     }
 

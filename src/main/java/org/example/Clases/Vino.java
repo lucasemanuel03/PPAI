@@ -98,18 +98,18 @@ public class Vino {
 
     // Metodos del dominio
     public Boolean tenesResenaDeTipoEnPeriodo(Date fechaDesde, Date fechaHasta){
-        System.out.println("// Vino: " + getNombre());
+        // System.out.println("// Vino: " + getNombre());
         for (int i = 0; i < resenas.size(); i++){
             boolean tenesResenasPeriodo = resenas.get(i).sosDePeriodo(fechaDesde, fechaHasta);
             boolean sosDeSommelier = resenas.get(i).sosDeSommelier();
 
             if(tenesResenasPeriodo && sosDeSommelier) // validar que sea de periodo y sea Premium
             {
-                System.out.println("valido");
+                // System.out.println("valido");
                 return true;
             }
         }
-        System.out.println("No Valido");
+        // System.out.println("No Valido");
         return false;
     }
     public ArrayList<String> buscarInfoBodega(){
@@ -147,31 +147,12 @@ public class Vino {
                 puntajes.add(resenas.get(i).getPuntaje());
             }
         }
-        System.out.println("Nro Resenas: " + resenas.size());
-        System.out.println("Array Puntajes: " + puntajes);
+        // System.out.println("Nro Resenas: " + resenas.size());
+        // System.out.println("Array Puntajes: " + puntajes);
         double promedio = calcularPuntajePromedio(puntajes);
 
         return promedio;
     }
 
 }
-
-
-
-   /* public static void main(String[] args) {
-        // Crear una instancia de Vino
-        Vino vino = new Vino(2020, "imagen.png", "Vino Tinto", "Notas de frutas rojas y especias", 15.99);
-
-        // Imprimir la información del vino
-        System.out.println(vino);
-
-        // Modificar algunos atributos usando setters
-        vino.setNotaCataBodega("Notas de frutas maduras y especias");
-        vino.setPrecio(17.99);
-
-        // Imprimir la información actualizada del vino
-        System.out.println(vino);
-    }
-
-    */
 

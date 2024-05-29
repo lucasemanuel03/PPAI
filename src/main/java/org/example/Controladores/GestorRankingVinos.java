@@ -21,18 +21,15 @@ public class    GestorRankingVinos {
     //Métodos
 
     //Del Dominio
-    public void opcionGenerarRankingVinos(PantallaRankingVinos pantalla, ArrayList<Vino> vinos){
+    public void opcionGenerarRankingVinos(PantallaRankingVinos pantalla, ArrayList<Vino> vinos, PantallaExcel pantallaExcel){
         pantalla.solicitarSelFechaDesdeYHasta(this);
         if(fechaDesde != null && fechaHasta != null) {
-            buscarVinosConResenaEnPeriodo(vinos);
+            buscarVinosConResenaEnPeriodo(vinos, pantalla);
             // ordenarVinos();
         }
-
         ordenarVinos();
-
         //Se genera el excel
-        PantallaExcel interfazExcel = new PantallaExcel();
-        interfazExcel.generarExcel(this.arrayDatosVinos);
+        pantallaExcel.generarExcel(this.primeros10Vinos);
 
         //Mensaje a la pantalla para que informe la generación del archivo
         pantalla.informarGeneracionArchivo();
@@ -43,7 +40,6 @@ public class    GestorRankingVinos {
     {
         setFechaDesde(fechaDesde);
         setFechaHasta(fechaHasta);
-        // System.out.println("Se ejecuto el tomarSel");
 
         //Llamada a la pantalla para que muestre los tipos de reseñas
         if (fechaDesde != null && fechaHasta != null){
@@ -65,7 +61,7 @@ public class    GestorRankingVinos {
 
         if (tipoVisualizacionSeleccionado != null){
             pantalla.solicitarConfirmacionGenReporte(this);
-            // System.out.println("correcto!");
+
         }
     }
 
@@ -83,7 +79,7 @@ public class    GestorRankingVinos {
         //Cierra la ventana
         pantalla.dispose();
     }
-    public void buscarVinosConResenaEnPeriodo(ArrayList<Vino> vinos){
+    public void buscarVinosConResenaEnPeriodo(ArrayList<Vino> vinos, PantallaRankingVinos pantalla){
         ArrayList<Object> vinosSeleccionados = new ArrayList<>();
         ArrayList<String> infoBodegas = new ArrayList<>();
         for (int i = 0; i < vinos.size(); i++) {
@@ -93,9 +89,8 @@ public class    GestorRankingVinos {
                 String nombre = vinos.get(i).getNombre();
                 Double precio = vinos.get(i).getPrecio();
                 ArrayList<String> infoBodega = vinos.get(i).buscarInfoBodega();
-                System.out.println("InfBodegas: " + infoBodega);
+                // System.out.println("InfBodegas: " + infoBodega);
                 String descVarietal = vinos.get(i).buscarVarietal();
-                // Pendiente ver como guardar los datos
 
                 //Luego de determinar que el vino tiene reseñas validas, calcula el promedio de puntaje de reseñas.
                 //VER QUE NO ES IGAUL A LA SOLUCION
@@ -110,11 +105,16 @@ public class    GestorRankingVinos {
                 datosVinoSeleccionado.add(descVarietal);
 
                 this.arrayDatosVinos.add(datosVinoSeleccionado);
-                System.out.println("Datos del vino seleccionado: " + datosVinoSeleccionado);
+                // System.out.println("Datos del vino seleccionado: " + datosVinoSeleccionado);
             }
 
             }
 
+        // ALTERNATIVA : NO hay vinos con reseñas en periodo
+        if (this.arrayDatosVinos.isEmpty()){
+            System.out.println("No hay vions en Periodo");
+            pantalla.informarNoHayVinosEnPeriodo();
+        }
     }
 
     public void ordenarVinos(){
@@ -130,8 +130,7 @@ public class    GestorRankingVinos {
 
         });
         setPrimeros10Vinos( this.arrayDatosVinos.subList(0, Math.min(this.arrayDatosVinos.size(), 10)));
-        System.out.println("Lista Ordenada: " + this.arrayDatosVinos);
-
+        // System.out.println("Lista Ordenada: " + this.arrayDatosVinos);
     };
 
 
