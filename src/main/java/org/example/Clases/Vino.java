@@ -20,7 +20,15 @@ public class Vino {
     //METODOS
 
     //Constructor
-    public Vino(int anada, String imagenEtiqueta, String nombre, String notaCataBodega, double precio,Bodega bodega, ArrayList<Resena> resenas, Varietal varietal) {
+    public Vino(int anada,
+                String imagenEtiqueta,
+                String nombre,
+                String notaCataBodega,
+                double precio,
+                Bodega bodega,
+                ArrayList<Resena> resenas,
+                Varietal varietal) {
+
         this.anada = anada;
         this.imagenEtiqueta = imagenEtiqueta;
         this.nombre = nombre;
@@ -95,8 +103,8 @@ public class Vino {
         this.varietal = varietal;
     }
 
-
     // Metodos del dominio
+
     public Boolean tenesResenaDeTipoEnPeriodo(Date fechaDesde, Date fechaHasta){
         // System.out.println("// Vino: " + getNombre());
         for (int i = 0; i < resenas.size(); i++){
@@ -129,12 +137,10 @@ public class Vino {
         if (lista == null || lista.isEmpty()) {
             return 0;  // Retornar 0 si la lista es nula o está vacía
         }
-
         double suma = 0;
         for (double numero : lista) {
             suma += numero;
         }
-
         return suma / lista.size();
     }
     public double calcularPuntajeSommelierPromedio(Date fechaDesde, Date fechaHasta){
@@ -150,7 +156,6 @@ public class Vino {
         // System.out.println("Nro Resenas: " + resenas.size());
         // System.out.println("Array Puntajes: " + puntajes);
         double promedio = calcularPuntajePromedio(puntajes);
-
         return promedio;
     }
 

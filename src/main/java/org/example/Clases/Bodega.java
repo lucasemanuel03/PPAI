@@ -12,7 +12,13 @@ public class Bodega {
     private RegionVitivinicola region;
 
     // Constructor
-    public Bodega(String coordenadasUbicacion, String descripcion, String historia, String nombre, String periodoActualizacion, RegionVitivinicola region) {
+    public Bodega(String coordenadasUbicacion,
+                  String descripcion,
+                  String historia,
+                  String nombre,
+                  String periodoActualizacion,
+                  RegionVitivinicola region) {
+
         this.coordenadasUbicacion = coordenadasUbicacion;
         this.descripcion = descripcion;
         this.historia = historia;
@@ -94,22 +100,4 @@ public class Bodega {
                 ", periodoUpdate='" + periodoActualizacion + '\'' +
                 '}';
     }
-
-/*
-    public static void main(String[] args) {
-        // Crear una instancia de Bodega
-        Bodega bodega = new Bodega("40.7128° N, 74.0060° W", "Bodega en Nueva York", "Fundada en 1920", "Bodega Central", "2023-01-01");
-
-        // Imprimir la información de la bodega
-        System.out.println(bodega);
-
-        // Modificar algunos atributos usando setters
-        bodega.setDescripcion("Bodega histórica en el centro de Nueva York");
-        bodega.setPeriodoActualizacion("2024-05-21");
-
-        // Imprimir la información actualizada de la bodega
-        System.out.println(bodega);
-    }
-
-*/
 }

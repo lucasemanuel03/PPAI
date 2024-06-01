@@ -23,18 +23,22 @@ public class    GestorRankingVinos {
     //Del Dominio
     public void opcionGenerarRankingVinos(PantallaRankingVinos pantalla, ArrayList<Vino> vinos, PantallaExcel pantallaExcel){
         pantalla.solicitarSelFechaDesdeYHasta(this);
+
         if(fechaDesde != null && fechaHasta != null) {
             buscarVinosConResenaEnPeriodo(vinos, pantalla);
             // ordenarVinos();
         }
+
         ordenarVinos();
+
         //Se genera el excel
         pantallaExcel.generarExcel(this.primeros10Vinos);
 
         //Mensaje a la pantalla para que informe la generación del archivo
-        pantalla.informarGeneracionArchivo();
+        if(confirmacionGeneracion){
+            pantalla.informarGeneracionArchivo();
+        }
     }
-
 
     public void tomarSelFechaDesdeYHasta(Date fechaDesde, Date fechaHasta, PantallaRankingVinos pantalla) //verificar si hay que ingresar la pantalla también
     {
@@ -44,7 +48,6 @@ public class    GestorRankingVinos {
         //Llamada a la pantalla para que muestre los tipos de reseñas
         if (fechaDesde != null && fechaHasta != null){
             pantalla.solicitarSelTipoResena(this);
-
         }
     }
 
@@ -61,18 +64,13 @@ public class    GestorRankingVinos {
 
         if (tipoVisualizacionSeleccionado != null){
             pantalla.solicitarConfirmacionGenReporte(this);
-
         }
     }
 
     public void tomarConfirmacionGenReporte(PantallaRankingVinos pantalla){
-
         setConfirmacionGeneracion(true);
-
         System.out.println("Confirmacion tomada en el gestor!");
        // this.buscarVinosConResenaEnPeriodo();
-
-
     }
 
     public void cancelarCU(PantallaRankingVinos pantalla){
@@ -134,11 +132,7 @@ public class    GestorRankingVinos {
     };
 
 
-
-
     //GETTERS AND SETTERS
-
-
     public boolean isConfirmacionGeneracion() {
         return confirmacionGeneracion;
     }

@@ -20,7 +20,7 @@ public class PantallaRankingVinos extends JFrame{
     private JPanel panelTitulo = new JPanel();
     private JPanel panelContenido = new JPanel();
     private JLabel titulo = new JLabel("BON VINO", SwingConstants.CENTER);
-    private JLabel subtitulo = new JLabel(":: Ranking de Vinos ::", SwingConstants.CENTER);
+    private JLabel subtitulo = new JLabel(":: Ranking TOP 10 de Vinos ::", SwingConstants.CENTER);
 
     //Componentes a mostar en el habilitar ventana
     private JTextField lblFechaDesde = new JTextField("01-01-2000", 20);
@@ -237,19 +237,32 @@ public class PantallaRankingVinos extends JFrame{
             panelContenido.revalidate();
             panelContenido.repaint();
             System.out.println(gestor.getPrimeros10Vinos());
-
         });
 
     }
 
     public void informarGeneracionArchivo(){
-        //panelContenido.add(lblTextGenArchivo);
+        panelContenido.add(lblTextGenArchivo);
 
     }
 
     public void informarNoHayVinosEnPeriodo() {
-        String mensaje = "¡No se encontraron Vinos con reseñas en ese periodo";
-        JOptionPane.showMessageDialog(this, mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        // Funcion que activa una ventana emergente informando que no hay vinos con reseñas en periodo
+
+        String mensaje = "NO se encontraron vinos con Reseñas en ese periodo";
+        int respuesta = JOptionPane.showOptionDialog(this,
+                mensaje,
+                "Mensaje",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                new Object[]{"Aceptar"},
+                "Aceptar");
+
+        // Si se hace clic en "Aceptar" se cierra la aplicación.
+        if (respuesta == JOptionPane.OK_OPTION) {
+            System.exit(0);
+        }
     }
 
 

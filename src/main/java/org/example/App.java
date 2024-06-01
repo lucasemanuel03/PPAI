@@ -8,19 +8,14 @@ import org.example.interfaz.PantallaRankingVinos;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
-
         //:: CREACIÓN DE DATOS ::
+
         //FECHAS
         Calendar calendar = Calendar.getInstance();
         calendar.set(2019, Calendar.JANUARY,1);
@@ -28,7 +23,6 @@ public class App
 
         calendar.set(2024, Calendar.JANUARY,1);
         Date fecha2 = calendar.getTime();
-
 
         //CREACION DE REGIONES
         RegionVitivinicola region1 = new RegionVitivinicola("Zona Centro-Oeste", "Desc Zona Centro-Oeste");
@@ -39,7 +33,6 @@ public class App
         ArrayList<RegionVitivinicola> regiones2 = new ArrayList<>();
         regiones2.add(region2);
         regiones1.add(region1);
-
 
         //CRACIÓN PROVINCIAS
         Provincia mendoza = new Provincia("Mendoza", regiones1);
@@ -60,7 +53,6 @@ public class App
         // ASOCIAR PAIS A PROVINCIA
         mendoza.setPais(pais1);
         laRioja.setPais(pais1);
-
 
         //CREACIÓN DE BODEGAS
         Bodega bodega1 = new Bodega("5354689-465896", "Bodega Familiar", "Historia de la bodega1", "Bodega Lopez", "2023-2024", region1);
@@ -97,22 +89,22 @@ public class App
         Vino vino11 = new Vino(2021, "/imagen11.png", "Vino El Cóndor", "Aroma a frutos rojos con notas de madera y especias.", 5500.0, bodega1, resenasVino11, varietal2);
 
         //RESEÑAS
-        Resena resena1 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,7.7, vino1);
-        Resena resena2 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,5.7, vino1);
-        Resena resena3 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,8.8, vino1); //NO PREMIUM
-        Resena resena4 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,6.7, vino2);
-        Resena resena5 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,7.2, vino2); //NO PREMIUM
-        Resena resena6 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,8.9, vino3);
-        Resena resena7 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,9.7, vino3);
-        Resena resena8 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,9.1, vino4);
-        Resena resena9 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,9.1, vino5);
-        Resena resena10 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,9.0, vino6);
-        Resena resena11 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,7.1, vino7);
-        Resena resena12 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,6.1, vino8);
-        Resena resena13 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,8.5, vino9);
-        Resena resena14 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,4.0, vino10); // RESEÑA CON PEOR PUNTAJE
-        Resena resena15 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,7.1, vino11);
-        Resena resena16 = new Resena("Excelente cuerpo y final prolongado.", true, fecha2,6.3, vino11); // FECHA FUERA DE PERIODO
+        Resena resena1 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,4.7, vino1);
+        Resena resena2 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,3.7, vino1);
+        Resena resena3 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,3.8, vino1); //NO PREMIUM
+        Resena resena4 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,4.7, vino2);
+        Resena resena5 = new Resena("Excelente cuerpo y final prolongado.", false, fecha1,3.2, vino2); //NO PREMIUM
+        Resena resena6 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,3.9, vino3);
+        Resena resena7 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,4.7, vino3);
+        Resena resena8 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,4.1, vino4);
+        Resena resena9 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,3.1, vino5);
+        Resena resena10 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,3.0, vino6);
+        Resena resena11 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,4.1, vino7);
+        Resena resena12 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,2.7, vino8); // Reseña con 2do peor puntaje
+        Resena resena13 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,3.5, vino9);
+        Resena resena14 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,2.0, vino10); // RESEÑA CON PEOR PUNTAJE
+        Resena resena15 = new Resena("Excelente cuerpo y final prolongado.", true, fecha1,4.1, vino11);
+        Resena resena16 = new Resena("Excelente cuerpo y final prolongado.", true, fecha2,3.3, vino11); // FECHA FUERA DE PERIODO
 
         //AÑADIR RESEÑAS A VINOS
         resenasVino1.add(resena1);
@@ -145,7 +137,6 @@ public class App
         vinos.add(vino9);
         vinos.add(vino10);
         vinos.add(vino11);
-
 
         // System.out.println("RESEÑAS DE VINO" + vino1.getNombre() + vino1.getResenas());
 
