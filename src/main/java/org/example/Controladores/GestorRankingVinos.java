@@ -9,8 +9,8 @@ import java.util.*;
 public class    GestorRankingVinos {
 
     // Atributos
-    Date fechaDesde;
-    Date fechaHasta;
+    Date fechaInicio;
+    Date fechaFin;
     String[] tipoVisualizaciones = {"PDF", "Por Pantalla", "Archivo Excel"};
     String tipoResenaSeleccionado;
     String tipoVisualizacionSeleccionado;
@@ -24,7 +24,7 @@ public class    GestorRankingVinos {
     public void opcionGenerarRankingVinos(PantallaRankingVinos pantalla, ArrayList<Vino> vinos, PantallaExcel pantallaExcel){
         pantalla.solicitarSelFechaDesdeYHasta(this);
 
-        if(fechaDesde != null && fechaHasta != null) {
+        if(fechaInicio != null && fechaFin != null) {
             buscarVinosConResenaEnPeriodo(vinos, pantalla);
             // ordenarVinos();
         }
@@ -81,7 +81,7 @@ public class    GestorRankingVinos {
         ArrayList<Object> vinosSeleccionados = new ArrayList<>();
         ArrayList<String> infoBodegas = new ArrayList<>();
         for (int i = 0; i < vinos.size(); i++) {
-            Boolean tieneResenaValidas = vinos.get(i).tenesResenaDeTipoEnPeriodo(this.fechaDesde, this.fechaHasta);
+            Boolean tieneResenaValidas = vinos.get(i).tenesResenaDeTipoEnPeriodo(this.fechaInicio, this.fechaFin);
 
             if (tieneResenaValidas) {
                 String nombre = vinos.get(i).getNombre();
@@ -92,7 +92,7 @@ public class    GestorRankingVinos {
 
                 //Luego de determinar que el vino tiene reseñas validas, calcula el promedio de puntaje de reseñas.
                 //VER QUE NO ES IGAUL A LA SOLUCION
-                double promedio = vinos.get(i).calcularPuntajeSommelierPromedio(this.fechaDesde, this.fechaHasta);
+                double promedio = vinos.get(i).calcularPuntajeSommelierPromedio(this.fechaInicio, this.fechaFin);
 
                 //AGREGAR VINO AL ARRAY DE SELECCIONADOS
                 ArrayList<Object> datosVinoSeleccionado = new ArrayList<>();
@@ -150,19 +150,19 @@ public class    GestorRankingVinos {
     }
 
     public Date getFechaDesde() {
-        return fechaDesde;
+        return fechaInicio;
     }
 
     public Date getFechaHasta() {
-        return fechaHasta;
+        return fechaFin;
     }
 
     public void setFechaDesde(Date fechaDesde) {
-        this.fechaDesde = fechaDesde;
+        this.fechaInicio = fechaDesde;
     }
 
-    public void setFechaHasta(Date fechaHasta) {
-        this.fechaHasta = fechaHasta;
+    public void setFechaHasta(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public String getTipoResenaSeleccionado() {
