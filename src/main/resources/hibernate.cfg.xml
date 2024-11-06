@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+    <session-factory>
+        <!-- JDBC Database connection settings -->
+        <property name="hibernate.dialect">org.hibernate.dialect.SQLiteDialect</property> <!-- Custom dialect for SQLite -->
+        <property name="hibernate.connection.driver_class">org.sqlite.JDBC</property>
+        <property name="hibernate.connection.url">jdbc:sqlite:D:\Programacion\java\Diseño\ppai-3\PPAI\vinos.db</property> <!-- Specify SQLite DB file path -->
+        <property name="hibernate.transaction.coordinator_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="hibernate.show_sql">true</property>
+
+        <!-- Solo valida, no crea y dropea la base de datos -->
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+
+        <!-- Mention annotated class -->
+<!--        <mapping class="org.example.Clases.Vino"/>-->
+<!--        <mapping class="org.example.Clases.Resena"/>-->
+<!--        <mapping class="org.example.Clases.Bodega"/>-->
+        <mapping class="org.example.Clases.Pais"/>
+<!--        <mapping class="org.example.Clases.Provincia"/>-->
+<!--        <mapping class="org.example.Clases.RegionVitivinicola"/>-->
+<!--        <mapping class="org.example.Clases.Varietal"/>-->
+    </session-factory>
+
+</hibernate-configuration>
