@@ -1,6 +1,9 @@
 package org.example.Controladores;
 
 import org.example.Clases.*;
+import org.example.Strategy.IEstrategiaGeneracionReporte;
+import org.example.Strategy.ResenaAmigos;
+import org.example.Strategy.ResenaSommelier;
 import org.example.interfaz.PantallaExcel;
 import org.example.interfaz.PantallaRankingVinos;
 
@@ -18,15 +21,31 @@ public class    GestorRankingVinos {
     List<List<Object>> arrayDatosVinos = new ArrayList<>();
     List<List<Object>> primeros10Vinos = new ArrayList<>();
 
+    //STRATEGY
+    IEstrategiaGeneracionReporte estrategia;
+
+
     //Métodos
+
+    //STRATEGY
+    public IEstrategiaGeneracionReporte crearEstrategia(String seleccion){
+        IEstrategiaGeneracionReporte estrategiaCreada;
+        if(seleccion == "Reseñas de Sommelier"){
+            estrategiaCreada = new ResenaSommelier();
+            return estrategiaCreada;
+        }
+        //CAMBIAR!!!!!
+        estrategiaCreada = new ResenaAmigos();
+        return estrategiaCreada;
+    };
 
     //Del Dominio
     public void opcionGenerarRankingVinos(PantallaRankingVinos pantalla, ArrayList<Vino> vinos, PantallaExcel pantallaExcel){
         pantalla.solicitarSelFechaDesdeYHasta(this);
 
         if(fechaInicio != null && fechaFin != null) {
-            buscarVinosConResenaEnPeriodo(vinos, pantalla);
-            // ordenarVinos();
+            this.buscarVinosConResenaEnPeriodo(vinos, pantalla);
+
         }
 
         ordenarVinos();
@@ -44,15 +63,30 @@ public class    GestorRankingVinos {
     {
         setFechaDesde(fechaDesde);
         setFechaHasta(fechaHasta);
-
         //Llamada a la pantalla para que muestre los tipos de reseñas
         if (fechaDesde != null && fechaHasta != null){
             pantalla.solicitarSelTipoResena(this);
         }
+
+        /* prueba
+        }
+            if (fechaDesde != null && fechaHasta != null){}
+        */
+        // prueba
+        IEstrategiaGeneracionReporte estr = new ResenaSommelier();
+        setEstrategia(estr);
+        //pantalla.solicitarSelTipoResena(this);
+
     }
 
     public void tomarSelTipoResena(String tipoResena, PantallaRankingVinos pantalla){
         setTipoResenaSeleccionado(tipoResena);
+
+        //STRATEGY
+        /*
+        Puede ir acá o en el método tomarConfirmacion()
+        * crearStrategy()
+        * */
 
         if(tipoResenaSeleccionado != null){
             pantalla.solicitarSelTipoVisualizacion(this);
@@ -70,7 +104,10 @@ public class    GestorRankingVinos {
     public void tomarConfirmacionGenReporte(PantallaRankingVinos pantalla){
         setConfirmacionGeneracion(true);
         System.out.println("Confirmacion tomada en el gestor!");
-       // this.buscarVinosConResenaEnPeriodo();
+
+        //STRATEGY
+        IEstrategiaGeneracionReporte estrategia =this.crearEstrategia(tipoResenaSeleccionado);
+        this.setEstrategia(estrategia);
     }
 
     public void cancelarCU(PantallaRankingVinos pantalla){
@@ -78,6 +115,11 @@ public class    GestorRankingVinos {
         pantalla.dispose();
     }
     public void buscarVinosConResenaEnPeriodo(ArrayList<Vino> vinos, PantallaRankingVinos pantalla){
+
+        //STRATEGY
+        List<List<Object>> arrayDatosVinos = estrategia.buscarVinosConResenaEnPeriodo(this.fechaInicio, this.fechaFin, vinos, this);
+        this.setArrayDatosVinos(arrayDatosVinos);
+        /*
         ArrayList<Object> vinosSeleccionados = new ArrayList<>();
         ArrayList<String> infoBodegas = new ArrayList<>();
         for (int i = 0; i < vinos.size(); i++) {
@@ -107,7 +149,7 @@ public class    GestorRankingVinos {
             }
 
             }
-
+        */
         // ALTERNATIVA : NO hay vinos con reseñas en periodo
         if (this.arrayDatosVinos.isEmpty()){
             System.out.println("No hay vions en Periodo");
@@ -195,5 +237,13 @@ public class    GestorRankingVinos {
 
     public List<List<Object>> getPrimeros10Vinos() {
         return primeros10Vinos;
+    }
+
+    public IEstrategiaGeneracionReporte getEstrategia() {
+        return estrategia;
+    }
+
+    public void setEstrategia(IEstrategiaGeneracionReporte estrategia) {
+        this.estrategia = estrategia;
     }
 }
