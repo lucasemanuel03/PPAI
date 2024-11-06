@@ -3,6 +3,7 @@ package org.example.Controladores;
 import org.example.Clases.*;
 import org.example.Strategy.IEstrategiaGeneracionReporte;
 import org.example.Strategy.ResenaAmigos;
+import org.example.Strategy.ResenaNormal;
 import org.example.Strategy.ResenaSommelier;
 import org.example.interfaz.PantallaExcel;
 import org.example.interfaz.PantallaRankingVinos;
@@ -29,15 +30,21 @@ public class    GestorRankingVinos {
 
     //STRATEGY
     public IEstrategiaGeneracionReporte crearEstrategia(String seleccion){
-        IEstrategiaGeneracionReporte estrategiaCreada;
-        if(seleccion == "Reseñas de Sommelier"){
-            estrategiaCreada = new ResenaSommelier();
-            return estrategiaCreada;
+
+        switch (seleccion) {
+            case "Reseñas de Sommelier":
+                return new ResenaSommelier();
+            case "Reseñas de Amigos":
+                return new ResenaAmigos();
+            case "Reseñas Normales" :
+                return new ResenaNormal();
+            default:
+                return new ResenaNormal();
         }
-        //CAMBIAR!!!!!
-        estrategiaCreada = new ResenaAmigos();
-        return estrategiaCreada;
     };
+    public void setEstrategia(IEstrategiaGeneracionReporte estrategia) {
+        this.estrategia = estrategia;
+    }
 
     //Del Dominio
     public void opcionGenerarRankingVinos(PantallaRankingVinos pantalla, ArrayList<Vino> vinos, PantallaExcel pantallaExcel){
@@ -107,6 +114,7 @@ public class    GestorRankingVinos {
 
         //STRATEGY
         IEstrategiaGeneracionReporte estrategia =this.crearEstrategia(tipoResenaSeleccionado);
+        estrategia.probarEstrategia();
         this.setEstrategia(estrategia);
     }
 
@@ -243,7 +251,5 @@ public class    GestorRankingVinos {
         return estrategia;
     }
 
-    public void setEstrategia(IEstrategiaGeneracionReporte estrategia) {
-        this.estrategia = estrategia;
-    }
+
 }
