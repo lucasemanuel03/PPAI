@@ -5,6 +5,11 @@ public class RegionVitivinicola {
     private String descripcion;
     private Provincia provincia;
 
+    public RegionVitivinicola(String nombre, String descripcion, Provincia provincia) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.provincia = provincia;
+    }
     public RegionVitivinicola(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;

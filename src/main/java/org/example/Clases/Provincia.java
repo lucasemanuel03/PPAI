@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Provincia {
     private String nombre;
-    private ArrayList<RegionVitivinicola> regionVitivinicolas;
+    private ArrayList<RegionVitivinicola> regionVitivinicolas; //N
     private Pais pais;
 
     //METODOS DEL DOMINIO
@@ -35,6 +35,11 @@ public class Provincia {
     }
 
     public void setPais(Pais pais) {
+        this.pais = pais;
+    }
+
+    public Provincia(String nombre, Pais pais){
+        this.nombre = nombre;
         this.pais = pais;
     }
 
