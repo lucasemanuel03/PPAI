@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ResenasSomelier implements IEstrategiaBusquedaVinos{
-    List<List<Object>> arrayDatosVinos = new ArrayList<>();
-    Date fechaInicio;
-    Date fechaFin;
+public class ResenasSomelier implements IEstrategiaGeneracionReporte {
+
+
     @Override
-    public List<List<Object>> buscarVinosConResena(ArrayList<Vino> vinos) {
+    public List<List<Object>> buscarVinosConResenaEnPeriodo(Date fechaInicio, Date fechaFin, ArrayList<Vino> vinos) {
         ArrayList<Object> vinosSeleccionados = new ArrayList<>();
         ArrayList<String> infoBodegas = new ArrayList<>();
+        List<List<Object>> arrayDatosVinos = new ArrayList<>();
         for (int i = 0; i < vinos.size(); i++) {
-            Boolean tieneResenaValidas = vinos.get(i).tenesResenaDeTipoEnPeriodo(this.fechaInicio, this.fechaFin);
+            Boolean tieneResenaValidas = vinos.get(i).tenesResenaDeTipoEnPeriodo(fechaInicio, fechaFin);
 
             if (tieneResenaValidas) {
                 String nombre = vinos.get(i).getNombre();
@@ -26,7 +26,7 @@ public class ResenasSomelier implements IEstrategiaBusquedaVinos{
 
                 //Luego de determinar que el vino tiene reseñas validas, calcula el promedio de puntaje de reseñas.
                 //VER QUE NO ES IGAUL A LA SOLUCION
-                double promedio = vinos.get(i).calcularPuntajeSommelierPromedio(this.fechaInicio, this.fechaFin);
+                double promedio = vinos.get(i).calcularPuntajeSommelierPromedio(fechaInicio, fechaFin);
 
                 //AGREGAR VINO AL ARRAY DE SELECCIONADOS
                 ArrayList<Object> datosVinoSeleccionado = new ArrayList<>();
@@ -36,10 +36,13 @@ public class ResenasSomelier implements IEstrategiaBusquedaVinos{
                 datosVinoSeleccionado.addAll(infoBodega);
                 datosVinoSeleccionado.add(descVarietal);
 
-                this.arrayDatosVinos.add(datosVinoSeleccionado);
+                arrayDatosVinos.add(datosVinoSeleccionado);
                 // System.out.println("Datos del vino seleccionado: " + datosVinoSeleccionado);
             }
+
         }
-        return this.arrayDatosVinos;
+        return arrayDatosVinos;
+
     }
+
 }

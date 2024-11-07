@@ -1,7 +1,7 @@
 package org.example.Controladores;
 
 import org.example.Clases.*;
-import org.example.StrategyPattern.IEstrategiaBusquedaVinos;
+import org.example.StrategyPattern.IEstrategiaGeneracionReporte;
 import org.example.StrategyPattern.ResenasAmigos;
 import org.example.StrategyPattern.ResenasNormales;
 import org.example.StrategyPattern.ResenasSomelier;
@@ -21,9 +21,37 @@ public class GestorRankingVinos  {
     boolean confirmacionGeneracion;
     List<List<Object>> arrayDatosVinos = new ArrayList<>();
     List<List<Object>> primeros10Vinos = new ArrayList<>();
-    private IEstrategiaBusquedaVinos estrategia ;
+    private IEstrategiaGeneracionReporte estrategia ;
 
     //Métodos
+
+    public IEstrategiaGeneracionReporte crearEstrategia(String seleccion){
+
+        switch (seleccion) {
+            case "Reseñas de Sommelier":
+                return new ResenasNormales();
+            case "Reseñas de Amigos":
+                return new ResenasAmigos();
+            case "Reseñas Normales" :
+                return new ResenasNormales();
+            default:
+                return new ResenasNormales();
+        }
+    };
+
+
+    // VEER!!
+    public void setTipoResenaSeleccionado(String tipoResenaSeleccionado) {
+        this.tipoResenaSeleccionado = tipoResenaSeleccionado;
+        if (Objects.equals(tipoResenaSeleccionado, "Reseñas de Sommelier")){
+            setEstrategia(new ResenasSomelier());
+        }else if(Objects.equals(tipoResenaSeleccionado, "Reseñas Normales")){
+            setEstrategia(new ResenasNormales());
+        }else if(Objects.equals(tipoResenaSeleccionado, "Reseñas de Amigos")){
+            setEstrategia(new ResenasAmigos());
+        }
+    }
+
 
     //Del Dominio
     public void opcionGenerarRankingVinos(PantallaRankingVinos pantalla, ArrayList<Vino> vinos, PantallaExcel pantallaExcel){
@@ -54,6 +82,15 @@ public class GestorRankingVinos  {
         if (fechaDesde != null && fechaHasta != null){
             pantalla.solicitarSelTipoResena(this);
         }
+
+        /* prueba
+        }
+            if (fechaDesde != null && fechaHasta != null){}
+        */
+        // prueba
+        IEstrategiaGeneracionReporte estr = new ResenasSomelier();
+        setEstrategia(estr);
+        //pantalla.solicitarSelTipoResena(this);
     }
 
     public void tomarSelTipoResena(String tipoResena, PantallaRankingVinos pantalla){
@@ -77,6 +114,10 @@ public class GestorRankingVinos  {
         setConfirmacionGeneracion(true);
         System.out.println("Confirmacion tomada en el gestor!");
        // this.buscarVinosConResenaEnPeriodo();
+
+        //STRATEGY
+        IEstrategiaGeneracionReporte estrategia =this.crearEstrategia(tipoResenaSeleccionado);
+        this.setEstrategia(estrategia);
     }
 
     public void cancelarCU(PantallaRankingVinos pantalla){
@@ -84,7 +125,7 @@ public class GestorRankingVinos  {
         pantalla.dispose();
     }
     public void buscarVinosConResenaEnPeriodo(ArrayList<Vino> vinos, PantallaRankingVinos pantalla){
-        this.arrayDatosVinos = estrategia.buscarVinosConResena(vinos);
+        this.arrayDatosVinos = estrategia.buscarVinosConResenaEnPeriodo(this.fechaInicio, this.fechaFin, vinos);
 
         // ALTERNATIVA : NO hay vinos con reseñas en periodo
         if (this.arrayDatosVinos.isEmpty()){
@@ -146,20 +187,10 @@ public class GestorRankingVinos  {
     public String getTipoResenaSeleccionado() {
         return tipoResenaSeleccionado;
     }
-    public void setEstrategia(IEstrategiaBusquedaVinos estrategia){
+    public void setEstrategia(IEstrategiaGeneracionReporte estrategia){
         this.estrategia = estrategia;
     }
 
-    public void setTipoResenaSeleccionado(String tipoResenaSeleccionado) {
-        this.tipoResenaSeleccionado = tipoResenaSeleccionado;
-        if (Objects.equals(tipoResenaSeleccionado, "Reseñas de Sommelier")){
-            setEstrategia(new ResenasSomelier());
-        }else if(Objects.equals(tipoResenaSeleccionado, "Reseñas Normales")){
-            setEstrategia(new ResenasNormales());
-        }else if(Objects.equals(tipoResenaSeleccionado, "Reseñas de Amigos")){
-            setEstrategia(new ResenasAmigos());
-        }
-    }
 
     public String getTipoVisualizacionSeleccionado() {
         return tipoVisualizacionSeleccionado;

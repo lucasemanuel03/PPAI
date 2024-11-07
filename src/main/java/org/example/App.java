@@ -79,6 +79,8 @@ public class App
             //Crear las relaciones con Vino
             vinos = vinosDAO.CrearRelacionesVino(vinos, resenas,bodegas, varietales);
 
+            System.out.println(vinos.get(1).getResenas().get(1).getFechaResena());
+
             conn.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
