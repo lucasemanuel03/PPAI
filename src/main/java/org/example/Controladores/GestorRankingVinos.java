@@ -114,7 +114,6 @@ public class    GestorRankingVinos {
 
         //STRATEGY
         IEstrategiaGeneracionReporte estrategia =this.crearEstrategia(tipoResenaSeleccionado);
-        estrategia.probarEstrategia();
         this.setEstrategia(estrategia);
     }
 
@@ -125,7 +124,7 @@ public class    GestorRankingVinos {
     public void buscarVinosConResenaEnPeriodo(ArrayList<Vino> vinos, PantallaRankingVinos pantalla){
 
         //STRATEGY
-        List<List<Object>> arrayDatosVinos = estrategia.buscarVinosConResenaEnPeriodo(this.fechaInicio, this.fechaFin, vinos, this);
+        List<List<Object>> arrayDatosVinos = estrategia.buscarVinosConResenaEnPeriodo(this.fechaInicio, this.fechaFin, vinos);
         this.setArrayDatosVinos(arrayDatosVinos);
         /*
         ArrayList<Object> vinosSeleccionados = new ArrayList<>();

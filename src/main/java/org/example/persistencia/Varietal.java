@@ -1,9 +1,13 @@
-package org.example.Clases;
+package org.example.persistencia;
 
 import jakarta.persistence.*;
 
+@Entity
+@Table(name = "varietal")
 public class Varietal {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String descripcion;
     private double porcentajeComposicion;
 

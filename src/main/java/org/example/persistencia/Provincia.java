@@ -1,15 +1,19 @@
-package org.example.Clases;
+package org.example.persistencia;
 
 import jakarta.persistence.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-
+@Entity
+@Table(name = "provincias")
 public class Provincia {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String nombre;
+    @OneToMany(mappedBy = "regiones", cascade = CascadeType.ALL, orphanRemoval = true)
     private ArrayList<RegionVitivinicola> regionVitivinicolas;
-
+    @ManyToOne
+    @JoinColumn(name = "id_pais")
     private Pais pais;
 
     //METODOS DEL DOMINIO

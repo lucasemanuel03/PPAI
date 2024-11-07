@@ -1,18 +1,23 @@
-package org.example.Clases;
+package org.example.persistencia;
 
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 
-
+@Entity
+@Table(name = "bodega")
 public class Bodega {
     // Atributos
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String coordenadasUbicacion;
     private String descripcion;
     private String historia;
     private String nombre;
     private String periodoActualizacion;
-
+    @ManyToOne
+    @JoinColumn(name = "id_region")
     private RegionVitivinicola region;
 
     // Constructor
@@ -30,7 +35,9 @@ public class Bodega {
         this.periodoActualizacion = periodoActualizacion;
         this.region = region;
     }
+    public Bodega(){
 
+    }
     //METODOS DEL DOMINIO
     public ArrayList<String> obtenerRegionYPais(){
         ArrayList<String> regionYPais = new ArrayList<>();

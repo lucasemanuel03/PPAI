@@ -11,7 +11,7 @@ import java.util.List;
 public class ResenaSommelier  implements IEstrategiaGeneracionReporte{
 
     @Override
-    public List<List<Object>> buscarVinosConResenaEnPeriodo(Date fechaInicio, Date fechaFin, ArrayList<Vino> vinos, GestorRankingVinos gestorRankingVinos) {
+    public List<List<Object>> buscarVinosConResenaEnPeriodo(Date fechaInicio, Date fechaFin, ArrayList<Vino> vinos) {
         ArrayList<Object> vinosSeleccionados = new ArrayList<>();
         ArrayList<String> infoBodegas = new ArrayList<>();
         List<List<Object>> arrayDatosVinos = new ArrayList<>();
@@ -42,14 +42,8 @@ public class ResenaSommelier  implements IEstrategiaGeneracionReporte{
             }
 
         }
-        gestorRankingVinos.setArrayDatosVinos(arrayDatosVinos);
         return arrayDatosVinos;
 
-    }
-
-    @Override
-    public void probarEstrategia() {
-        System.out.println("PRINT DENTRO DE LA ESTRATEGIA!!");
     }
 
     public ResenaSommelier() {

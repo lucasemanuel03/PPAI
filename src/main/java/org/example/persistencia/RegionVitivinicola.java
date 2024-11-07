@@ -1,14 +1,17 @@
-package org.example.Clases;
+package org.example.persistencia;
 
 import jakarta.persistence.*;
 
-
+@Entity
+@Table(name = "regionesVitivinicolas")
 public class RegionVitivinicola {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nombre;
     private String descripcion;
-
+    @ManyToOne
+    @JoinColumn(name = "id_provincia")
     private Provincia provincia;
 
     public RegionVitivinicola(String nombre, String descripcion) {

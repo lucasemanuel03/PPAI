@@ -4,15 +4,22 @@ import org.example.Clases.*;
 import org.example.Controladores.GestorRankingVinos;
 import org.example.interfaz.PantallaExcel;
 import org.example.interfaz.PantallaRankingVinos;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+@SpringBootApplication
+@EnableJpaRepositories(basePackages = "org.example.Clases")
 public class App 
 {
     public static void main( String[] args )
     {
+        System.setProperty("java.awt.headless", "false");
+        // SpringApplication.run(App.class, args);  // Arranca la aplicación Spring Boot
         System.out.println( "Hello World!" );
         //:: CREACIÓN DE DATOS ::
 
@@ -20,6 +27,7 @@ public class App
         Calendar calendar = Calendar.getInstance();
         calendar.set(2019, Calendar.JANUARY,1);
         Date fecha1 = calendar.getTime();
+        System.out.println(fecha1.toString());
 
         calendar.set(2024, Calendar.JANUARY,1);
         Date fecha2 = calendar.getTime();

@@ -1,13 +1,17 @@
-package org.example.Clases;
+package org.example.persistencia;
 
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 
-
+@Entity
+@Table(name = "paises")
 public class Pais {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String nombre;
-
+    @OneToMany(mappedBy = "pais", cascade = CascadeType.ALL, orphanRemoval = true)
     private ArrayList<Provincia> provincias;
 
     public String getNombre() {

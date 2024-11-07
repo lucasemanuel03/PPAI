@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IEstrategiaGeneracionReporte {
 
-    public default List<List<Object>> buscarVinosConResenaEnPeriodo(Date fechaDesde, Date fechaHasta, ArrayList<Vino> vinos, GestorRankingVinos gestorRankingVinos) {
+    public default List<List<Object>> buscarVinosConResenaEnPeriodo(Date fechaDesde, Date fechaHasta, ArrayList<Vino> vinos) {
 
         return null;
     }

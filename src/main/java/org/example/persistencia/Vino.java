@@ -1,26 +1,30 @@
-package org.example.Clases;
-import java.util.ArrayList;
-import java.lang.reflect.Array;
-import java.util.Date;
+package org.example.persistencia;
 
 import jakarta.persistence.*;
-import org.example.Clases.Resena;
 
+import java.util.ArrayList;
+import java.util.Date;
 
+@Entity
+@Table(name = "vino")
 public class Vino {
     // Atributos
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private int anada;
     private String imagenEtiqueta;
     private String nombre;
     private String notaCataBodega;
     private double precio;
 
-
+    @ManyToOne
+    @JoinColumn(name = "id_bodega")
     private Bodega bodega;
-
+    @OneToMany(mappedBy = "resenas", cascade = CascadeType.ALL, orphanRemoval = true)
     private ArrayList<Resena> resenas;
-
+    @ManyToOne
+    @JoinColumn(name = "id_bodega")
     private Varietal varietal;
 
 
@@ -45,7 +49,9 @@ public class Vino {
         this.resenas = resenas;
         this.varietal = varietal;
     }
+    public Vino(){
 
+    }
 
     public int getAnada() {
         return anada;

@@ -1,14 +1,20 @@
-package org.example.Clases;
+package org.example.persistencia;
 import jakarta.persistence.*;
 
 import java.util.Date;
-
+@Entity
+@Table(name = "resenas")
 public class Resena {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String comentario;
     private Boolean esPremium;
     private Date fechaResena;
     private double puntaje;
+    @ManyToOne
+    @JoinColumn(name = "id_vino")
     private Vino vino;
 
     public Resena(String comentario, Boolean esPremium, Date fechaResena, double puntaje, Vino vino) {

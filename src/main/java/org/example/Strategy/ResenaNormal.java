@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ResenaNormal implements IEstrategiaGeneracionReporte{
     @Override
-    public List<List<Object>> buscarVinosConResenaEnPeriodo(Date fechaDesde, Date fechaHasta, ArrayList<Vino> vinos, GestorRankingVinos gestorRankingVinos) {
-        return IEstrategiaGeneracionReporte.super.buscarVinosConResenaEnPeriodo(fechaDesde, fechaHasta, vinos, gestorRankingVinos);
+    public List<List<Object>> buscarVinosConResenaEnPeriodo(Date fechaDesde, Date fechaHasta, ArrayList<Vino> vinos) {
+        return IEstrategiaGeneracionReporte.super.buscarVinosConResenaEnPeriodo(fechaDesde, fechaHasta, vinos);
     }
 }
