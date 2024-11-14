@@ -95,6 +95,7 @@ public class GestorRankingVinos  {
 
     public void tomarSelTipoResena(String tipoResena, PantallaRankingVinos pantalla){
 
+        crearEstrategia(tipoResena);
         setTipoResenaSeleccionado(tipoResena);
 
         if(tipoResenaSeleccionado != null){
